@@ -1,0 +1,55 @@
+{
+  "name": "dvs-auth",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "http://192.168.100.20/dvs-auth",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "base-64": "^0.1.0",
+    "bootstrap": "^4.1.3",
+    "classnames": "^2.2.6",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "file-saver": "^2.0.0-rc.4",
+    "font-awesome": "^4.7.0",
+    "formik": "^0.11.11",
+    "history": "^4.7.2",
+    "i18next": "^12.0.0",
+    "i18next-browser-languagedetector": "^2.2.3",
+    "jwt-decode": "^2.2.0",
+    "keycloak-js": "^4.5.0",
+    "node-sass": "^4.9.4",
+    "react": "^16.6.0",
+    "react-content-loader": "^3.2.0",
+    "react-dom": "^16.6.0",
+    "react-i18next": "^8.3.5",
+    "react-js-pagination": "^3.0.2",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.1.0",
+    "react-test-renderer": "^16.6.0",
+    "react-toastify": "^4.4.0",
+    "reactstrap": "^6.5.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "test:debug": "react-scripts --inspect-brk test --runInBand",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.0.4",
+    "babel-polyfill": "^6.26.0",
+    "sinon": "^7.1.1"
+  }
+}
