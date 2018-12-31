@@ -140,7 +140,7 @@ export function errors(context, error) {
       } else if (error.response.status === 403) {
         toast.error('These credential do not match our records.');
       } else if (error.response.status === 404) {
-        toast.error.error(error.response.data.message);
+        toast.error(error.response.data.message);
       } else if (error.response.status === 405) {
         toast.error('You have used a wrong HTTP verb');
       } else if (error.response.status === 406) {

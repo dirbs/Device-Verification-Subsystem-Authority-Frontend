@@ -13,20 +13,11 @@ import Page401 from '../../views/Errors/Page401';
 import CheckStatus from "../../views/Verification/CheckStatus";
 
 class Full extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.changeLanguage = this.changeLanguage.bind(this);
-  }
 
-  changeLanguage(lng) {
-    const { i18n } = this.props;
-    i18n.changeLanguage(lng);
-  }
   render() {
     return (
       <div className="app">
-        <Header {...this.props} switchLanguage={this.changeLanguage} />
+        <Header {...this.props} />
         <div className="app-body">
           <Sidebar {...this.props}/>
           <main className="main">
