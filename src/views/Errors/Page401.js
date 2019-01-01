@@ -15,14 +15,6 @@ import { I18n, translate } from 'react-i18next';
 import settings from '../../settings';
 
 class Page401 extends Component {
-    constructor(props) {
-        super(props);
-        this.changeLanguage = this.changeLanguage.bind(this);
-    }
-    changeLanguage(lng) {
-        const { i18n } = this.props;
-        i18n.changeLanguage(lng);
-    }
 
     componentDidMount() {
         document.body.classList.remove('sidebar-fixed');

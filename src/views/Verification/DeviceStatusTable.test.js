@@ -124,4 +124,35 @@ describe('Device Status Table',()=>{
     )
     expect(wrapper).toMatchSnapshot()
   });
+  test('if total rows match mock data', () => {
+    const wrapper = render(
+      <I18nextProvider i18n={i18n}>
+        <DeviceStatusTable data={mockDeviceStatusTableData} visible={true}
+                           classificationStates={mockClassificationState} />
+      </I18nextProvider>
+    )
+    const rows = wrapper.find('tr')
+    expect(rows.length).toEqual(18)
+  });
+  test('if total number of tables equal 3', () => {
+    const wrapper = mount(
+      <I18nextProvider i18n={i18n}>
+        <DeviceStatusTable data={mockDeviceStatusTableData} visible={true}
+                           classificationStates={mockClassificationState} />
+      </I18nextProvider>
+    )
+    const tables = wrapper.find('table')
+    expect(tables.length).toEqual(3)
+  });
+  test('if class added for visibility', () => {
+    const wrapper = mount(
+      <I18nextProvider i18n={i18n}>
+        <DeviceStatusTable data={mockDeviceStatusTableData} visible={true}
+                           classificationStates={mockClassificationState} />
+      </I18nextProvider>
+    )
+    const Card = wrapper.find('Card')
+    expect(Card.hasClass('DeviceStatusTable_show')).toBe(true)
+  });
+
 })

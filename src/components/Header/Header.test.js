@@ -1,11 +1,9 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import Header from "./Header";
-
 const userDetails = {
   preferred_username: "User"
 }
-
 describe('Header component',()=>{
   /**
    * Test if header renders successfully
@@ -29,14 +27,6 @@ describe('Header component',()=>{
     expect(wrapper.contains(<span className="navbar-toggler-icon"></span>)).toBe(true);
   })
   /**
-   * Test if it renders username
-   */
-  test('If renders username',()=>{
-    const mockLogout = jest.fn();
-    const wrapper = mount(<Header kc={{ logout: mockLogout}} userDetails={userDetails}/>);
-    expect(wrapper.contains(<span className="mr-3 h6 d-inline-block mt-2">User</span>)).toBe(true);
-  })
-  /**
    * Test if logout function works
    */
   test('If Logout button clicks',()=>{
@@ -45,4 +35,23 @@ describe('Header component',()=>{
     wrapper.find('.dropdown-menu button').simulate('click')
     expect(mockLogout.mock.calls.length).toEqual(1)
   })
+
+  test('should toggle sidebar', () => {
+    const wrapper = shallow(<Header />);
+    wrapper.find('NavbarToggler').at(1).simulate('click', {
+      preventDefault: () => {
+      }
+    })
+    expect(document.body.classList.contains('sidebar-hidden'))
+  })
+
+  test('should toggle mobile sidebar', () => {
+    const wrapper = shallow(<Header />);
+    wrapper.find('NavbarToggler').at(0).simulate('click', {
+      preventDefault: () => {
+      }
+    })
+    expect(document.body.classList.contains('sidebar-mobile-show'))
+  })
+
 })
