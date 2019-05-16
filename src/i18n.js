@@ -10,6 +10,9 @@
 */
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import settings from './settings';
+
+const { defaultLanguage } = settings.appDetails;
 
 i18n
     .use(LanguageDetector)
@@ -252,5 +255,5 @@ i18n
             wait: true
         }
     });
-
+i18n.changeLanguage(defaultLanguage);
 export default i18n;
