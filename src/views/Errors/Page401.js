@@ -15,7 +15,6 @@ import { I18n, translate } from 'react-i18next';
 import settings from '../../settings';
 
 class Page401 extends Component {
-
     componentDidMount() {
         document.body.classList.remove('sidebar-fixed');
         document.body.classList.remove('aside-menu-fixed');
