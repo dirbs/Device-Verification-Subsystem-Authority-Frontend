@@ -11,11 +11,16 @@
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
 import {Row, Col, Button, Collapse} from 'reactstrap';
-import {errors, getAuthHeader, instance, deleteTrackingId} from '../../utilities/helpers'
+import {errors, getAuthHeader, instance, deleteTrackingId, SweetAlert} from '../../utilities/helpers'
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BulkVerifyStatusTable from '../../views/BulkVerification/BulkVerifyStatusTable'
 import FileSaver from "file-saver";
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+import i18n from "../../i18n";
+
+const MySwal = withReactContent(Swal);
 
 /**
  * React Stateful component consist of Bulk status information
@@ -78,7 +83,11 @@ export class StatusCollapse extends Component {
         .then((response) => {
           //If the State is PENDING
           if (response.data.state === "PENDING") {
-            toast.warn(response.data.state)
+            SweetAlert({
+              title: i18n.t('info'),
+              message: i18n.t('status.pending'),
+              type: 'info'
+            })
             this.setState({status: response.data.state})
           }
           //If state = SUCCESS
@@ -111,7 +120,11 @@ export class StatusCollapse extends Component {
               collapse: false,
               status: "Not found"
             });
-            toast.error(response.data.state)
+            SweetAlert({
+              title: i18n.t('info'),
+              message: i18n.t('status.NotFound'),
+              type: 'error'
+            })
           }
         })
         .catch((error) => {
