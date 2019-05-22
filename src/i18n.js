@@ -97,7 +97,8 @@ i18n
                     //Common
                     "submit" : "Submit",
                     "button.ok": "Ok",
-                    "noInformation": "No information"
+                    "noInformation": "No information",
+                    "unprocessibleEntity" : "Unprocessible Entity"
                 }
             },
             es: {
@@ -146,6 +147,7 @@ i18n
                     "seenWith.title": "Visto con",
                     "submit" : "Enviar",
                     "button.ok": "De acuerdo",
+                    "unprocessibleEntity" : "Entidad no procesable",
 
                     //BulkVerify
                     "bulkverify.label":"Método de verificación a granel",
@@ -219,6 +221,7 @@ i18n
                     "seenWith.title": "Terlihat dengan",
                     "submit" : "Menyerahkan",
                     "button.ok": "Baik",
+                    "unprocessibleEntity" : "Entitas yang tidak dapat diproses",
                     //BulkVerify
                     "bulkverify.label":"Metode verifikasi massal",
                     "bulkverify.tab":"File yang dibatasi tab",

@@ -209,15 +209,15 @@ export function errors (context, error) {
         })
         //toast.error(error.response.data.message, { autoClose: 10000 });
       } else if (error.response.status === 422) {
+        SweetAlert({
+          title: i18n.t('error'),
+          message: i18n.t('unprocessibleEntity'),
+          type: 'error'
+        });
         let errors = error.response.data.messages;
         for (var key in errors) {
           var caseErrors = errors[key];
           for (var i in caseErrors) {
-            SweetAlert({
-              title: i18n.t('error'),
-              message: caseErrors[i][0],
-              type: 'error'
-            });
             //toast.error(caseErrors[i][0], { autoClose: 10000 });
           }
         }
