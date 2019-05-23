@@ -17,3 +17,6 @@ Thumbs.db
 .idea
 npm-debug.log
 compilation-stats.json
+
+#settings
+src/settings.json

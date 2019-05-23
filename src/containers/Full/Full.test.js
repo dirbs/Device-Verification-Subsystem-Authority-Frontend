@@ -26,7 +26,7 @@ describe("Full component", () => {
     const wrapper = render(
       <Router>
         <I18nextProvider i18n={i18n}>
-          <Full kc={mockKcProps}/>
+          <Full userDetails={{preferred_username: 'test'}} kc={mockKcProps}/>
         </I18nextProvider>
       </Router>
     )

@@ -10,6 +10,9 @@
 */
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import settings from './settings';
+
+const { defaultLanguage } = settings.appDetails;
 
 i18n
     .use(LanguageDetector)
@@ -24,7 +27,9 @@ i18n
                     "VerifyImei": "Verify IMEI",
                     "Bulkverify": "Bulk IMEI",
                     "CheckStatus": "Check Status",
-
+                    "info":"Info",
+                    "status.pending":"Pending",
+                    "status.notFound":"Not Found",
                     //Header
                     "verifyImei.header": "Verify IMEI",
 
@@ -91,7 +96,9 @@ i18n
                     "checkStatus.noResults": "No Results found",
                     //Common
                     "submit" : "Submit",
-                    "noInformation": "No information"
+                    "button.ok": "Ok",
+                    "noInformation": "No information",
+                    "unprocessibleEntity" : "Unprocessible Entity"
                 }
             },
             es: {
@@ -104,6 +111,9 @@ i18n
                     "VerifyImei": "Verificar IMEI",
                     "Bulkverify": "Abultar IMEI",
                     "CheckStatus": "Periksa Status",
+                    "info":"Info",
+                    "status.pending":"Pendiente",
+                    "status.notFound":"Extraviado",
 
                     //Header
                     "verifyImei.header": "Verificar IMEI",
@@ -136,6 +146,8 @@ i18n
                     "deviceStatusTable.date": "Bloquear a partir de la fecha",
                     "seenWith.title": "Visto con",
                     "submit" : "Enviar",
+                    "button.ok": "De acuerdo",
+                    "unprocessibleEntity" : "Entidad no procesable",
 
                     //BulkVerify
                     "bulkverify.label":"Método de verificación a granel",
@@ -173,6 +185,9 @@ i18n
                     "VerifyImei": "Memeriksa IMEI",
                     "Bulkverify": "Jumlah besar IMEI",
                     "CheckStatus": "Periksa Status",
+                    "info":"Info",
+                    "status.pending":"Tertunda",
+                    "status.notFound":"Tidak Ditemukan",
 
                     //Header
                     "verifyImei.header": "Memeriksa IMEI",
@@ -205,7 +220,8 @@ i18n
                     "deviceStatusTable.date": "Blokir Tanggal",
                     "seenWith.title": "Terlihat dengan",
                     "submit" : "Menyerahkan",
-
+                    "button.ok": "Baik",
+                    "unprocessibleEntity" : "Entitas yang tidak dapat diproses",
                     //BulkVerify
                     "bulkverify.label":"Metode verifikasi massal",
                     "bulkverify.tab":"File yang dibatasi tab",
@@ -252,5 +268,5 @@ i18n
             wait: true
         }
     });
-
+i18n.changeLanguage(defaultLanguage);
 export default i18n;

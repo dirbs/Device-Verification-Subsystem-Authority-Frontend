@@ -1,0 +1,28 @@
+{
+  "appDetails": {
+    "appName": "dvs",
+    "supportEmail": "support@example.com",
+    "supportNumber": "+923001234567",
+    "defaultLanguage": "en"
+  },
+  "api": {
+    "host": "HOST API",
+    "port": "API PORT",
+    "version": "API VERSION",
+    "use": false
+  },
+  "apiman": {
+    "host": "HOST APIMAN",
+    "port": "APIMAN PORT",
+    "clientId": "APIMAN CLIENT ID",
+    "use": true
+  },
+  "keycloak": {
+      "realm": "DIRBS",
+      "url": "KEYCLOAK URL",
+      "ssl-required": "external",
+      "clientId": "sso",
+      "public-client": true
+
+  }
+}
