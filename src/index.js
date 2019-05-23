@@ -31,13 +31,20 @@ import Base64 from 'base-64';
 import Keycloak from 'keycloak-js';
 import decode from 'jwt-decode'
 import Page401 from "./views/Errors/Page401";
+import settings from './settings.json'
+import {KC_URL} from './utilities/constants';
 
-let kc = Keycloak('./keycloak.json');
+const { clientId, realm } = settings.keycloak;
+
+let kc = Keycloak({
+	url:KC_URL,
+	realm:realm,
+	clientId:clientId
+});
 
 
 kc.init({onLoad: 'login-required'}).success(authenticated => {
     if (authenticated) {
-        console.log(kc);
 		localStorage.setItem('token', kc.token);
         let tokenDetails = decode(kc.token)
 	  	let groups = getUserGroups(tokenDetails);
