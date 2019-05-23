@@ -83,7 +83,8 @@ cd src/settings.json
   "appDetails": {
     "appName": "APP_NAME", // configure Application name, make sure that this appName must be same as mentioned in Keycloak roles, e.g. dvs_authority
     "supportEmail": "support@example.com", // configure this email as it will be visible for unauthorized user
-    "supportNumber": "+923001234567" // // configure this contact number as it will be visible for unauthorized user
+    "supportNumber": "+923001234567", // // configure this contact number as it will be visible for unauthorized user
+    "defaultLanguage": 'en'
   },
   "api": {
     "host": "http://SERVER_IP", // Configure API Host e.g. http://www.api-example.com
@@ -96,7 +97,15 @@ cd src/settings.json
     "port": "PORT_NUMBER", // Configure Apiman Port e.g. 8000
     "clientId": "CLIENT_ID_OR_SUBPATH", // configure clientID e.g. /apiman-gateway/example/appname/1.0
     "use": false // for hitting Apiman Gateway directly, make it *True*
-  }
+  },
+     "keycloak": {
+       "host": "http://SERVER_IP", // Configure Keycloak Host e.g= 192.168.211.211,
+       "port": "Port Number",
+       "version": "Version",
+       "clientId": "sso",
+       "realm": "DIRBS",
+       "use": true
+     }
 }
 ```
 
