@@ -76,7 +76,7 @@ npm install
 
 #### APIMan, Keycloak and API Configurations
 ```
-cd src/settings.json
+cd src/settings-template.json
 ```
 ```
 {
