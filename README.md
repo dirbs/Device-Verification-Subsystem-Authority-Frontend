@@ -103,13 +103,13 @@ cd src/settings.json
        "port": "Port Number",
        "version": "Version",
        "clientId": "sso",
-       "realm": "DIRBS",
+       "realm": "dirbs",
        "use": true
      }
 }
 ```
 
-**Note:** Copy keycloak.json file into public directory. _Refer to KeyCloak documentation._
+**Note:** Copy settings_template.json and make a new file as settings.json into src folder and replace with settings._
 
 #### Serve with hot reload (watch changes instantly) at localhost:3000
 ```
