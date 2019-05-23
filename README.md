@@ -79,7 +79,7 @@ npm install
 cp src/settings-template.json src/settings.json
 ```
 
-**Note:** Update all the URLs into the file.
+**Note:** Update all the configs into the file.
 
 #### Serve with hot reload (watch changes instantly) at localhost:3000
 ```
