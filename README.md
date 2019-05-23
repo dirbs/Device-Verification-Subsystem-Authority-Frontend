@@ -75,41 +75,8 @@ npm install
 ```
 
 #### APIMan, Keycloak and API Configurations
-```
-cd src/settings-template.json
-```
-```
-{
-  "appDetails": {
-    "appName": "APP_NAME", // configure Application name, make sure that this appName must be same as mentioned in Keycloak roles, e.g. dvs_authority
-    "supportEmail": "support@example.com", // configure this email as it will be visible for unauthorized user
-    "supportNumber": "+923001234567", // // configure this contact number as it will be visible for unauthorized user
-    "defaultLanguage": 'en'
-  },
-  "api": {
-    "host": "http://SERVER_IP", // Configure API Host e.g. http://www.api-example.com
-    "port": "PORT_NUMBER", // Configure API Port e.g. 3000
-    "version": "VERSION_OR_SUBPATH", // Configure API Version e.g. /api/v1/
-    "use": true // for directly hitting API, make it *True*
-  },
-  "apiman": {
-    "host": "http://SERVER_IP", // configure Apiman Host e.g. http://www.apiman-example.com
-    "port": "PORT_NUMBER", // Configure Apiman Port e.g. 8000
-    "clientId": "CLIENT_ID_OR_SUBPATH", // configure clientID e.g. /apiman-gateway/example/appname/1.0
-    "use": false // for hitting Apiman Gateway directly, make it *True*
-  },
-     "keycloak": {
-       "host": "http://SERVER_IP", // Configure Keycloak Host e.g= 192.168.211.211,
-       "port": "Port Number",
-       "version": "Version",
-       "clientId": "sso",
-       "realm": "dirbs",
-       "use": true
-     }
-}
-```
-
-**Note:** Copy settings_template.json and make a new file as settings.json into src folder and replace with settings._
+**Note:** Make a copy of  settings_template.json and rename it as settings.json. Update URLs
+into the file.
 
 #### Serve with hot reload (watch changes instantly) at localhost:3000
 ```
