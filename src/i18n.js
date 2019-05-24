@@ -98,7 +98,9 @@ i18n
                     "submit" : "Submit",
                     "button.ok": "Ok",
                     "noInformation": "No information",
-                    "unprocessibleEntity" : "Unprocessible Entity"
+                    "unprocessibleEntity" : "Unprocessible Entity",
+                    "serverNotResponding" : "Server Not Responding",
+                    "error" : "error",
                 }
             },
             es: {
@@ -148,6 +150,8 @@ i18n
                     "submit" : "Enviar",
                     "button.ok": "De acuerdo",
                     "unprocessibleEntity" : "Entidad no procesable",
+                    "serverNotResponding" : "Servidor no responde",
+                    "error" : "error",
 
                     //BulkVerify
                     "bulkverify.label":"Método de verificación a granel",
@@ -173,6 +177,7 @@ i18n
                     "checkStatus.status.pending": "PENDIENTE",
                     "checkStatus.status.notFound": "EXTRAVIADO",
                     "checkStatus.noResults": "No se han encontrado resultados",
+
                 }
             },
             id: {
@@ -222,6 +227,8 @@ i18n
                     "submit" : "Menyerahkan",
                     "button.ok": "Baik",
                     "unprocessibleEntity" : "Entitas yang tidak dapat diproses",
+                    "serverNotResponding" : "Server tidak merespons",
+                    "error" : "kesalahan",
                     //BulkVerify
                     "bulkverify.label":"Metode verifikasi massal",
                     "bulkverify.tab":"File yang dibatasi tab",
