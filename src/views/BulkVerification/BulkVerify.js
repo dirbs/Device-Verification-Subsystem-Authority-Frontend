@@ -322,6 +322,9 @@ class BulkVerify extends Component {
     })
     const formData = new FormData()
     formData.append('tac', tac)
+    formData.append('username', this.props.userDetails.preferred_username)
+    formData.append('user_id', this.props.userDetails.sub)
+
     this.setState({
       count: JSON.parse(localStorage.getItem('count')),
       trackingIds: JSON.parse(localStorage.getItem('tracking_ids'))
