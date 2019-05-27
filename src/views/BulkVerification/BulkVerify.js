@@ -18,6 +18,7 @@ import {getAuthHeader, getExtension, errors, getSetTrackingId, instance} from '.
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
+import * as i18next from "i18next";
 
 /**
  * React functional (presentational) component used in WithFormik HOC
@@ -70,7 +71,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: "Invalid format"
+            message: i18next.t('errors.invalidFormat')
           }
         })
       }
@@ -120,7 +121,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: "Invalid format"
+            message: i18next.t('errors.invalidFormat')
           }
         })
       }
@@ -128,7 +129,7 @@ export class BulkVerifyForm extends Component {
       this.setState({
         inputError: {
           enabled: true,
-          message: "Input file required"
+          message: i18next.t('errors.FeildReq')
         }
       })
     }
@@ -153,14 +154,14 @@ export class BulkVerifyForm extends Component {
                       <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="bulkTabDelimited" name="bulkMethod"
                                onChange={this.onFileInputChangeHandler}
-                               className="custom-control-input" value="Tab-delimited file"
+                               className="custom-control-input" value={t('bulkverify.tabDelimitedFile')}
                                checked={this.state.showFileInput}/>
                         <label className="custom-control-label" htmlFor="bulkTabDelimited">
                           {t('bulkverify.tab')}</label>
                       </div>
                       <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="bulkEnterTAC" name="bulkMethod"
-                               className="custom-control-input" value="Enter the TAC"
+                               className="custom-control-input" value={t('enterTheTac')}
                                onChange={this.onTacChangeHandler}/>
                         <label className="custom-control-label" htmlFor="bulkEnterTAC">
                           {t('bulkverify.tac')}</label>
@@ -187,7 +188,7 @@ export class BulkVerifyForm extends Component {
                 <div className={this.state.showTac ? 'col-md-4 col-sm-6 bulk-show-method-tac'
                   : 'col-md-4 col-sm-6 bulk-method-tac'}>
                   <Field class="form-group mb-0" clearError={this.state.clearError} maxLength="8"
-                         name="tac" component={renderInput} label="Enter the TAC"
+                         name="tac" component={renderInput} label={t('bulkverify.enterTheTac')}
                          type="text" placeholder="" requiredStar/>
                 </div>
                 }
@@ -232,17 +233,17 @@ export const MyEnhancedForm = withFormik({
     let errors = {};
     // IMEIs Validation
     if (!values.tac) {
-      errors.tac = 'This field is Required'
+      errors.tac = i18next.t('errors.FeildReq')
     } else if (values.tac.length > 8) {
-      errors.tac = 'The Tac must be a 8 digits number'
+      errors.tac = i18next.t('errors.tacLength')
     } else if (values.tac.length < 8) {
-      errors.tac = 'The Tac must be a 8 digits number'
+      errors.tac = i18next.t('errors.tacLength')
     }
     if (isNaN(Number(values.tac))) {
-      errors.tac = 'The Tac must be a number'
+      errors.tac = i18next.t('errors.tacType')
     }
     if (/\s/g.exec(values.tac) !== null) {
-      errors.tac = 'Enter valid Tac'
+      errors.tac = i18next.t("errors.enterValidTac")
     }
     return errors;
   },
@@ -342,7 +343,7 @@ class BulkVerify extends Component {
               trackingId: response.data.task_id,
               alert: {
                 enabled: true,
-                message: response.data.message,
+                message: i18next.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
@@ -366,7 +367,7 @@ class BulkVerify extends Component {
           disableButton: true,
           alert: {
             enabled: true,
-            message: "Limit Exceed",
+            message: i18next.t('errors.limitExceed'),
             type: 'error'
           },
         })
@@ -382,6 +383,8 @@ class BulkVerify extends Component {
   postData(config, file) {
     const formData = new FormData()
     formData.append('file', file)
+    formData.append('username', this.props.userDetails.preferred_username)
+    formData.append('user_id', this.props.userDetails.sub)
     this.setState({
       disableButton: true,
       alert: {
@@ -405,7 +408,7 @@ class BulkVerify extends Component {
             this.setState({
               alert: {
                 enabled: true,
-                message: response.data.message,
+                message: i18next.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
@@ -429,7 +432,7 @@ class BulkVerify extends Component {
           disableButton: true,
           alert: {
             enabled: true,
-            message: "Limit exceeded",
+            message: i18next.t('errors.limitExceed'),
             type: 'error'
           },
         })
@@ -447,7 +450,7 @@ class BulkVerify extends Component {
           disableButton: true,
           alert: {
             enabled: true,
-            message: "Limit exceeded for number of requests",
+            message: i18next.t('errors.limitExceeded'),
             type: 'error'
           },
         })
