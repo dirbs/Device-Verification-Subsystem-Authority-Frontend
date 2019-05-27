@@ -21,7 +21,14 @@ i18n
         resources: {
             en: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Device Verification System",
+
+                    //Greetings
+                    "greetings": "Hi",
+
                     // Navigation
+                    "headerText": "Main Navigation",
                     "homeLink"  : "Home",
                     "dashboardLink": "Dashboard",
                     "VerifyImei": "Verify IMEI",
@@ -66,6 +73,19 @@ i18n
                     "pairs.title": "Paired subscribers",
                     "pairs.lastseen": "Last seen",
 
+                    //IMIE Status
+                    "heading.normalizedIMie" :"Normalized IMIE",
+                    "heading.status": "IMIE Status",
+                    "heading.deviceInformation": "Device Information",
+                    "heading.noInfo": "No Information",
+                    "heading.pairedSubs": "Paired Subscribers",
+                    "heading.lastSeen": "Last Seen",
+                    "subHead.duplicateCompound": "duplicate_compound",
+                    "subHead.notOnRegistrationList": "not_on_registration_list",
+                    "subHead.gsmaNotFound": "gsma_not_found",
+                    "subHead.onLocalStolenList": "on_local_stolen_list",
+
+
                     //BulkVerify
                     "bulkverify.label":"Bulk verification method",
                     "bulkverify.tab":"Tab-delimited file",
@@ -81,6 +101,9 @@ i18n
                     "bulkverify.table.stolen":"IMEIs pending stolen report verification",
                     "bulkverify.table.pending":"IMEIs pending registration",
                     "bulkverify.table.info":"IMEIs per informational condition",
+                    "bulkverify.tabDelimitedFile":"Tab-Delimited-File",
+                    "bulkverify.enterTheTac": "Enter The Tac",
+                    "bulkverify.responseMessgae": "You're request is completed. Track using this id,",
 
                     //404 Page
                     "UnauthorizedPage": "Unauthorized Page",
@@ -101,13 +124,38 @@ i18n
                     "unprocessibleEntity" : "Unprocessible Entity",
                     "serverNotResponding" : "Server Not Responding",
                     "error" : "error",
+                    "chooseFile": "Choose File",
+                    "logout": "logout",
+
+                    //errors
+                    "errors.FeildReq": " This field is required",
+                    "errors.Imie": "IMIE must contain 14 to 16 characters and contains a combination of [0-9], [a-f] and [A-F]. ",
+                    "errors.tacLength": "The Tac must be a 8 digits number",
+                    "errors.tacType": "The tac must be a number",
+                    "errors.limitExceed": "Limit Exceed",
+                    "errors.limitExceeded": "Limit exceeded for number of requests",
+                    "errors.invalidFormat": "Invalid Format",
+                    "errors.enterValidTac": "Enter Valid Tac",
+
+
+                    //Copyright
+                    "copyright": "Copyright",
+                    "allRightsReserved": "All Rights Reserved",
+                    "Version": "Version",
                 }
             },
             es: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Subsistema De Verificación De Dispositivos",
+
+                    //Greetings
+                    "greetings": "Hola",
+
                     "welcomeApp": "Bienvenido a LSMS",
 
                     // Navigation
+                    "headerText": "Navegación Principal",
                     "homeLink"  : "Casa",
                     "dashboardLink": "Tablero",
                     "VerifyImei": "Verificar IMEI",
@@ -120,9 +168,23 @@ i18n
                     //Header
                     "verifyImei.header": "Verificar IMEI",
 
+                    //IMIE Status
+                    "heading.normalizedIMie" :"IMIE normalizado",
+                    "heading.status": "Estado IMIE",
+                    "heading.deviceInformation": "Información del dispositivo",
+                    "heading.noInfo": "Sin información",
+                    "heading.pairedSubs": "Suscriptores Pareados",
+                    "heading.lastSeen": "Ultima vez visto",
+                    "subHead.duplicateCompound": "compuesto_duplicado",
+                    "subHead.notOnRegistrationList": "no-en-la-lista-de-registro",
+                    "subHead.gsmaNotFound": "gsma-no-encontrado",
+                    "subHead.onLocalStolenList": "en-lista-local-robada",
+
                     //Verify IMEI Component
                     "checkStatus.header": "Verifique el estado de IMEI",
                     "checkStatus.label": "Ingrese el IMEI",
+                    "checkStatus.term": "Método de verificación",
+                    "checkStatus.createdAt": "Creado en",
                     "checkStatus.placeholder": "Ingrese 14 dígitos IMEI",
                     "deviceStatusTable.title": "Estado del dispositivo",
                     "deviceStatusTable.brand": "Marca",
@@ -168,6 +230,13 @@ i18n
                     "bulkverify.table.stolen":"IMEIs pendiente de verificación de informes robados",
                     "bulkverify.table.pending":"IMEI pendiente de registro",
                     "bulkverify.table.info":"IMEI por condición informativa",
+                    "bulkverify.tabDelimitedFile":"Archivo-delimitado-por-tabulaciones",
+                    "bulkverify.enterTheTac": "Entrar en el tac",
+                    "bulkverify.responseMessgae": "Su solicitud se ha completado. Seguimiento usando esta identificación,",
+
+                    //commons
+                    "chooseFile": "Elija el archivo",
+                    "logout": "Cerrar sesión",
 
                     //Check Status
                     "checkStatus.trackingId": "Seguimiento de Ids",
@@ -178,13 +247,34 @@ i18n
                     "checkStatus.status.notFound": "EXTRAVIADO",
                     "checkStatus.noResults": "No se han encontrado resultados",
 
+                    //errors
+                    "errors.FeildReq": "Esta seccion es necesaria",
+                    "errors.Imie": "IMIE debe contener de 14 a 16 caracteres y contiene una combinación de [0-9], [a-f] y [A-F].",
+                    "errors.tacLength": "El Tac debe ser un número de 8 dígitos",
+                    "errors.tacType": "El tac debe ser un número.",
+                    "errors.limitExceed": "Límite excedido",
+                    "errors.limitExceeded": "Límite excedido para el número de solicitudes",
+                    "errors.invalidFormat": "Formato inválido",
+                    "errors.enterValidTac": "Ingrese val",
+
+                    //Copyright
+                    "copyright": "Derechos",
+                    "allRightsReserved": "Todos Los Derechos Reservados",
+                    "Version": "Versión",
                 }
             },
             id: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Subsistem Verifikasi Perangkat",
+
+                    //Greetings
+                    "greetings": "Hai",
+
                     "welcomeApp": "Selamat datang di LSMS",
 
                     // Navigation
+                    "headerText": "Navigasi Utama",
                     "homeLink"  : "Rumah",
                     "dashboardLink": "Dasbor",
                     "VerifyImei": "Memeriksa IMEI",
@@ -196,6 +286,18 @@ i18n
 
                     //Header
                     "verifyImei.header": "Memeriksa IMEI",
+
+                    //IMIE Status
+                    "heading.normalizedIMie" :"IMIE Yang Dinormalisasi",
+                    "heading.status": "Status IMIE",
+                    "heading.deviceInformation": "Informasi Perangkat",
+                    "heading.noInfo": "Tidak ada Informasi",
+                    "heading.pairedSubs": "Pelanggan Berpasangan",
+                    "heading.lastSeen": "Terakhir terlihat",
+                    "subHead.duplicateCompound": "duplikat_senyawa",
+                    "subHead.notOnRegistrationList": "tidak_ada_dalam_daftar_pendaftaran",
+                    "subHead.gsmaNotFound": "gsma_tidak_ditemukan",
+                    "subHead.onLocalStolenList": "pada_daftar_curian_lokal",
 
                     //Verify IMEI Component
                     "checkStatus.header": "Periksa Status IMEI",
@@ -244,6 +346,9 @@ i18n
                     "bulkverify.table.stolen":"IMEI menunggu verifikasi laporan yang dicuri",
                     "bulkverify.table.pending":"IMEI menunggu pendaftaran",
                     "bulkverify.table.info":"IMEI per kondisi informasi",
+                    "bulkverify.tabDelimitedFile":"File-yang-Dibatasi-Tab",
+                    "bulkverify.enterTheTac": "Masukkan Tac",
+                    "bulkverify.responseMessgae": "Permintaan Anda selesai. Lacak menggunakan id ini,",
 
                     //Check Status
                     "checkStatus.trackingId": "Id Pelacakan",
@@ -253,6 +358,30 @@ i18n
                     "checkStatus.status.pending": "TERTUNDA",
                     "checkStatus.status.notFound": "TIDAK DITEMUKAN",
                     "checkStatus.noResults": "Tidak ada hasil yang ditemukan",
+                    "checkStatus.createdAt": "Dibuat di",
+                    "checkStatus.term": "Metode Verifikasi",
+
+                    //commons
+                    "chooseFile": "Pilih File",
+                    "logout": "Keluar",
+
+                    //errors
+                    "errors.FeildReq": "Bagian ini diperlukan",
+                    "errors.Imie": "IMIE harus mengandung 14 hingga 16 karakter dan mengandung kombinasi [0-9], [a-f] dan [A-F].",
+                    "errors.tacLength": "Tac harus berupa angka 8 digit",
+                    "errors.tacType": "Tac harus berupa angka",
+                    "errors.limitExceed": "Batasi Melebihi",
+                    "errors.limitExceeded": "Batas terlampaui untuk jumlah permintaan",
+                    "errors.invalidFormat": "Format yang tidak valid",
+                    "errors.enterValidTac": "Masukkan tac yang valid",
+
+
+                    //Copyright
+                    "copyright": "Hak Cipta",
+                    "allRightsReserved": "Seluruh Hak Cipta",
+                    "Version": "Versi",
+
+
                 }
             }
         },

@@ -30,11 +30,11 @@ const DeviceStatusTable = ({
             <Card className={props.visible ? 'DeviceStatusTable_show' : 'DeviceStatusTable_hide'}>
                 <CardHeader>{t('deviceStatusTable.title')}</CardHeader>
                 <CardBody>
-                    <h6 className="mt-3"><b>IMEI Status</b></h6>
+                    <h6 className="mt-3"><b>{t('heading.status')}</b></h6>
                     <table className="table table-sm table-bordered table-status mb-0">
                         <tbody>
                         <tr>
-                            <th>Normalized IMEI</th>
+                            <th>{t('heading.status')}</th>
                             <td>{props.data.imei}</td>
                         </tr>
                         { props.data.compliant &&
@@ -58,7 +58,7 @@ const DeviceStatusTable = ({
                         </tbody>
                     </table>
 
-                    <h6 className="mt-4"><b>Device information</b></h6>
+                    <h6 className="mt-4"><b>{t('heading.deviceInformation')}</b></h6>
                     <table className="table table-sm table-bordered table-status mb-0">
                         <tbody>
                         <tr>
