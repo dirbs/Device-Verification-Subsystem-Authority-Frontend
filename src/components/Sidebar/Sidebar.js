@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import nav from './_nav';
 import SidebarMinimizer from './../SidebarMinimizer';
 import { I18n } from 'react-i18next';
+import * as i18next from "i18next";
 
 class Sidebar extends Component {
 
@@ -50,7 +51,7 @@ class Sidebar extends Component {
     };
 
     // simple wrapper for nav-title item
-    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, item.name)): item.name ) };
+    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, i18next.t('headerText'))): i18next.t('headerText') ) };
 
     // nav list section title
     const title =  (title, key) => {
@@ -121,6 +122,7 @@ class Sidebar extends Component {
       return (
         <li key={key} className={this.activeRoute(item.url, this.props)}>
           <button className=" nav-link nav-dropdown-toggle" onClick={this.handleClick}><i className={item.icon}></i>{this.props.t(item.name)}</button>
+          {console.log(this.props.t(item.name))}
           <ul className="nav-dropdown-items">
             {navList(item.children)}
           </ul>

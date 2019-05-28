@@ -5,6 +5,7 @@ import {
   DropdownToggle,
   Dropdown
 } from 'reactstrap';
+import i18next from "i18next";
 
 class HeaderDropdown extends Component {
 
@@ -27,11 +28,11 @@ class HeaderDropdown extends Component {
     return (
       <Dropdown nav isOpen={this.state.dropdownOpen} toggle={this.toggle} className='dd-itereg'>
         <DropdownToggle nav>
-          Hi, <span className="mr-3 h6 d-inline-block mt-2">{this.props.userDetails.preferred_username}</span>
+          {i18next.t('greetings')}, <span className="mr-3 h6 d-inline-block mt-2">{this.props.userDetails.preferred_username}</span>
           <span className="fa fa-caret-down"></span>
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i> Logout</DropdownItem>
+          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i>{i18next.t("logout")}</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );

@@ -148,7 +148,6 @@ export class StatusCollapse extends Component {
         FileSaver.saveAs(file);
       })
       .catch((error) => {
-        console.log('iam here')
         errors(this, error)
       })
   }

@@ -28,7 +28,7 @@ const AssociatedData = ({
                     <div>
                         {}
                         <div className="card">
-                            <div className="card-header"><b>{props.title}</b></div>
+                            <div className="card-header"><b>{t('heading.pairedSubs')}</b></div>
                             <div className="card-body p0">
                                 <div className="react-bs-table-container">
                                     <div className="table-responsive">
@@ -36,7 +36,7 @@ const AssociatedData = ({
                                             <thead>
                                             <tr>
                                                 <th>IMSI</th>
-                                                <th>{t('pairs.lastseen')}</th>
+                                                <th>{t('heading.lastSeen')}</th>
                                             </tr>
                                             </thead>
                                             { (props.data.length > 0 &&

@@ -18,11 +18,11 @@
     "use": true
   },
   "keycloak": {
-      "realm": "DIRBS",
-      "url": "KEYCLOAK URL",
-      "ssl-required": "external",
-      "clientId": "sso",
-      "public-client": true
-
+    "host": "http://SERVER_IP",
+    "port": "PORT_NUMBER",
+    "version": "VERSION_OR_SUBPATH",
+    "clientId": "CLIENT_ID",
+    "realm": "REALM",
+    "use": true 
   }
 }
