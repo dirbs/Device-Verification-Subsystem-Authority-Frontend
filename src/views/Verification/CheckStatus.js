@@ -12,15 +12,11 @@ import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
 import {Row, Col, Button, Collapse} from 'reactstrap';
 import {errors, getAuthHeader, instance, deleteTrackingId, SweetAlert} from '../../utilities/helpers'
-import {ToastContainer, toast} from 'react-toastify';
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BulkVerifyStatusTable from '../../views/BulkVerification/BulkVerifyStatusTable'
 import FileSaver from "file-saver";
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import i18n from "../../i18n";
-
-const MySwal = withReactContent(Swal);
 
 /**
  * React Stateful component consist of Bulk status information
@@ -41,6 +37,7 @@ export class StatusCollapse extends Component {
     this.toggle = this.toggle.bind(this);
     this.downloadRecord = this.downloadRecord.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
+  //  console.log(this.props.kcProps.kc.userInfo.preferred_username);
   }
 
   /**
@@ -72,6 +69,7 @@ export class StatusCollapse extends Component {
    * Returns: Toggle the trigger
    */
   toggle(config) {
+    console.log(this.props.value)
     //Checks if Data is loaded. To avoid API calls each time.
     if (this.state.collapse || this.state.statusData !== null) {
       this.setState({
@@ -81,6 +79,7 @@ export class StatusCollapse extends Component {
       //Fetch Status
       instance.post(`/bulkstatus/${this.props.value}`, null, config)
         .then((response) => {
+          console.log(response.data)
           //If the State is PENDING
           if (response.data.state === "PENDING") {
             SweetAlert({
@@ -102,16 +101,17 @@ export class StatusCollapse extends Component {
               })
             } else {
               this.setState({
-                fileName: response.data.result.compliant_report_name,
+                fileName: response.data.result.response.compliant_report_name,
                 hasReport: true
               })
             }
             //Toggle collapse and update state data
             this.setState({
               collapse: !this.state.collapse,
-              statusData: response.data.result,
+              statusData: response.data.result.response,
               status: response.data.state
             });
+           
 
           } else {
             //Delete the record when its seen
@@ -234,7 +234,7 @@ class CheckStatus extends Component {
               {tracking_ids &&
               tracking_ids.length > 0 && tracking_ids.map((value, index) => {
                 return (<div key={index}>
-                  <StatusCollapse term={value.term} created={value.created_at} value={value.id} kcProps={this.props}/>
+                <StatusCollapse term={value.term} created={value.created_at} value={value.id} kcProps={this.props}/>
                 </div>)
               })
               }

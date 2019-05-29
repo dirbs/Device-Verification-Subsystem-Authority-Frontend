@@ -218,7 +218,7 @@ export function errors (context, error) {
         for (var key in errors) {
           var caseErrors = errors[key];
           for (var i in caseErrors) {
-            //toast.error(caseErrors[i][0], { autoClose: 10000 });
+            caseErrors = i
           }
         }
       } else if (error.response.status >= 500) {
