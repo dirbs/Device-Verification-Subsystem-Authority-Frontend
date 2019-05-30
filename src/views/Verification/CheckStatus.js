@@ -29,7 +29,7 @@ export class StatusCollapse extends Component {
     super(props);
     this.state = {
       collapse: false,
-      status: 'PENDING',
+      status: '',
       statusTable: false,
       statusData: null,
       fileName: '',
@@ -79,17 +79,17 @@ export class StatusCollapse extends Component {
       instance.post(`/bulkstatus/${this.props.value}`, null, config)
         .then((response) => {
            //If the State is PENDING
-          if (response.data.state === "PENDING") {
+          if (this.props.status === "PENDING") {
+           
             SweetAlert({
               title: i18n.t('info'),
               message: i18n.t('status.pending'),
               type: 'info'
             })
-            this.setState({status: response.data.state})
+            
           }
           //If state = SUCCESS
-          else if (response.data.state === "SUCCESS") {
-            console.log("i am here")
+          else if (this.props.status === "SUCCESS") {
             //If Report is not generated
             if (response.data.result.compliant_report_name === "report not generated.") {
               this.setState({
@@ -101,13 +101,12 @@ export class StatusCollapse extends Component {
                 fileName: response.data.result.response.compliant_report_name,
                 hasReport: true
               })
-              console.log(response.data.result.response.compliant_report_name)
-            }
+           }
             //Toggle collapse and update state data
             this.setState({
               collapse: !this.state.collapse,
               statusData: response.data.result.response,
-              status: response.data.state
+              status: i18n.t('requestsSuccess')
             });
              
           } else {
@@ -260,7 +259,7 @@ class CheckStatus extends Component {
               {requests &&
               requests.length > 0 && requests.map((request, index) => {
                 return (<div key={index}>
-                <StatusCollapse term={this.checkInputType(request.input)} created={moment(request.start_time).format("dddd, MMMM Do, YYYY")} status={request.status} value={request.tracking_id} kcProps={this.props}/>
+                <StatusCollapse term={this.checkInputType(request.input)} created={moment(request.start_time).format("D/MM/YYYY")} status={request.status} value={request.tracking_id} kcProps={this.props}/>
                 </div>)
               })
               }
