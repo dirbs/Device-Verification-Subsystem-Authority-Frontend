@@ -74,8 +74,8 @@ i18n
                     "pairs.lastseen": "Last seen",
 
                     //IMIE Status
-                    "heading.normalizedIMie" :"Normalized IMIE",
-                    "heading.status": "IMIE Status",
+                    "heading.normalizedIMie" :"Normalized IMEI",
+                    "heading.status": "IMEI Status",
                     "heading.deviceInformation": "Device Information",
                     "heading.noInfo": "No Information",
                     "heading.pairedSubs": "Paired Subscribers",
@@ -129,7 +129,7 @@ i18n
 
                     //errors
                     "errors.FeildReq": " This field is required",
-                    "errors.Imie": "IMIE must contain 14 to 16 characters and contains a combination of [0-9], [a-f] and [A-F]. ",
+                    "errors.Imie": "IMEI must contain 14 to 16 characters and contains a combination of [0-9], [a-f] and [A-F]. ",
                     "errors.tacLength": "The Tac must be a 8 digits number",
                     "errors.tacType": "The tac must be a number",
                     "errors.limitExceed": "Limit Exceed",
@@ -169,8 +169,8 @@ i18n
                     "verifyImei.header": "Verificar IMEI",
 
                     //IMIE Status
-                    "heading.normalizedIMie" :"IMIE normalizado",
-                    "heading.status": "Estado IMIE",
+                    "heading.normalizedIMie" :"IMEI normalizado",
+                    "heading.status": "Estado IMEI",
                     "heading.deviceInformation": "Información del dispositivo",
                     "heading.noInfo": "Sin información",
                     "heading.pairedSubs": "Suscriptores Pareados",
@@ -249,7 +249,7 @@ i18n
 
                     //errors
                     "errors.FeildReq": "Esta seccion es necesaria",
-                    "errors.Imie": "IMIE debe contener de 14 a 16 caracteres y contiene una combinación de [0-9], [a-f] y [A-F].",
+                    "errors.Imie": "IMEI debe contener de 14 a 16 caracteres y contiene una combinación de [0-9], [a-f] y [A-F].",
                     "errors.tacLength": "El Tac debe ser un número de 8 dígitos",
                     "errors.tacType": "El tac debe ser un número.",
                     "errors.limitExceed": "Límite excedido",
@@ -288,8 +288,8 @@ i18n
                     "verifyImei.header": "Memeriksa IMEI",
 
                     //IMIE Status
-                    "heading.normalizedIMie" :"IMIE Yang Dinormalisasi",
-                    "heading.status": "Status IMIE",
+                    "heading.normalizedIMie" :"IMEI Yang Dinormalisasi",
+                    "heading.status": "Status IMEI",
                     "heading.deviceInformation": "Informasi Perangkat",
                     "heading.noInfo": "Tidak ada Informasi",
                     "heading.pairedSubs": "Pelanggan Berpasangan",
@@ -367,7 +367,7 @@ i18n
 
                     //errors
                     "errors.FeildReq": "Bagian ini diperlukan",
-                    "errors.Imie": "IMIE harus mengandung 14 hingga 16 karakter dan mengandung kombinasi [0-9], [a-f] dan [A-F].",
+                    "errors.Imie": "IMEI harus mengandung 14 hingga 16 karakter dan mengandung kombinasi [0-9], [a-f] dan [A-F].",
                     "errors.tacLength": "Tac harus berupa angka 8 digit",
                     "errors.tacType": "Tac harus berupa angka",
                     "errors.limitExceed": "Batasi Melebihi",
