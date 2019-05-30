@@ -37,7 +37,6 @@ export class StatusCollapse extends Component {
     this.toggle = this.toggle.bind(this);
     this.downloadRecord = this.downloadRecord.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
-  //  console.log(this.props.kcProps.kc.userInfo.preferred_username);
   }
 
   /**
@@ -69,7 +68,6 @@ export class StatusCollapse extends Component {
    * Returns: Toggle the trigger
    */
   toggle(config) {
-    console.log(this.props.value)
     //Checks if Data is loaded. To avoid API calls each time.
     if (this.state.collapse || this.state.statusData !== null) {
       this.setState({
@@ -79,8 +77,7 @@ export class StatusCollapse extends Component {
       //Fetch Status
       instance.post(`/bulkstatus/${this.props.value}`, null, config)
         .then((response) => {
-          console.log(response.data)
-          //If the State is PENDING
+           //If the State is PENDING
           if (response.data.state === "PENDING") {
             SweetAlert({
               title: i18n.t('info'),
@@ -91,8 +88,7 @@ export class StatusCollapse extends Component {
           }
           //If state = SUCCESS
           else if (response.data.state === "SUCCESS") {
-            //Deletion from Local storage
-            deleteTrackingId(this.props.value)
+            console.log("i am here")
             //If Report is not generated
             if (response.data.result.compliant_report_name === "report not generated.") {
               this.setState({
@@ -104,6 +100,7 @@ export class StatusCollapse extends Component {
                 fileName: response.data.result.response.compliant_report_name,
                 hasReport: true
               })
+              console.log(response.data.result.response.compliant_report_name)
             }
             //Toggle collapse and update state data
             this.setState({
@@ -111,8 +108,7 @@ export class StatusCollapse extends Component {
               statusData: response.data.result.response,
               status: response.data.state
             });
-           
-
+             
           } else {
             //Delete the record when its seen
             deleteTrackingId(this.props.value)
@@ -160,7 +156,7 @@ export class StatusCollapse extends Component {
             <div>
               <Row className="tablerow">
                 <Col data-label={t('checkStatus.trackingId')} xs="12" md="4">{this.props.value}</Col>
-                <Col data-label={t('checkStatus.currentStatus')} xs="12" md="2">{this.state.status}</Col>
+                <Col data-label={t('checkStatus.currentStatus')} xs="12" md="2">{this.props.status}</Col>
                 <Col data-label={t('checkStatus.createdAt')} xs="12" md="2">{this.props.created}</Col>
                 <Col data-label={t('checkStatus.term')} xs="12" md="2">{this.props.term}</Col>
                 <Col data-label={t('checkStatus.checkStatus')} xs="12" md="2">
@@ -189,33 +185,54 @@ class CheckStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tracking_ids: [],
+      requests: null,
       noIds: true
     }
   }
 
-  componentDidMount() {
-    //Populating initial data
-    this.setState({
-      tracking_ids: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      //If there is no data, No Results found will be shown
-      if (this.state.tracking_ids !== null) {
-        if (this.state.tracking_ids.length === 0) {
-          this.setState({
-            noIds: true
-          })
-        } else {
-          this.setState({
-            noIds: false
-          })
-        }
+  updateTokenHOC(callingFunc, param = null) {
+    let config = null;
+    if (this.props) {
+      this.props.kc.updateToken(0)
+        .success(() => {
+          localStorage.setItem('token', this.props.kc.token)
+          config = {
+            headers: getAuthHeader(this.props.kc.token)
+          }
+          callingFunc(config, param);
+        })
+        .error(() => this.props.kc.logout());
+    } else {
+      config = {
+        headers: getAuthHeader()
       }
-    })
+      callingFunc(config, param);
+    }
   }
 
+  getAllRequests = (config) =>{
+    let userId = this.props.userDetails.sub;
+    instance.get('/requests/'+userId, config)
+          .then((response) => {
+            if(response.data.length>0){
+              this.setState({
+                requests: response.data,
+                noIds: false
+              })
+            }else{
+              this.setState({
+                noIds: true
+              })
+            }    
+            })
+  }
+
+  componentDidMount() {
+     this.updateTokenHOC(this.getAllRequests)
+          }
+
   render() {
-    const {tracking_ids, noIds} = this.state
+    const {requests, noIds} = this.state
     return (
       <I18n ns="translations">
         {
@@ -231,10 +248,10 @@ class CheckStatus extends Component {
                   <Col md="2">{t('checkStatus.checkStatus')}</Col>
                 </Row>
               }
-              {tracking_ids &&
-              tracking_ids.length > 0 && tracking_ids.map((value, index) => {
+              {requests &&
+              requests.length > 0 && requests.map((request, index) => {
                 return (<div key={index}>
-                <StatusCollapse term={value.term} created={value.created_at} value={value.id} kcProps={this.props}/>
+                <StatusCollapse term={request.input} created={request.summary_id} status={request.status} value={request.tracking_id} kcProps={this.props}/>
                 </div>)
               })
               }
