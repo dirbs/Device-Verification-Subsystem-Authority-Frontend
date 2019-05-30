@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import BulkVerifyStatusTable from '../../views/BulkVerification/BulkVerifyStatusTable'
 import FileSaver from "file-saver";
 import i18n from "../../i18n";
+import moment from 'moment';
 
 /**
  * React Stateful component consist of Bulk status information
@@ -210,6 +211,14 @@ class CheckStatus extends Component {
     }
   }
 
+  checkInputType(type){
+    if(type.includes('.tsv')){
+      return "FILE: "+type
+    }else{
+      return "TAC: "+type
+    }
+  }
+
   getAllRequests = (config) =>{
     let userId = this.props.userDetails.sub;
     instance.get('/requests/'+userId, config)
@@ -251,7 +260,7 @@ class CheckStatus extends Component {
               {requests &&
               requests.length > 0 && requests.map((request, index) => {
                 return (<div key={index}>
-                <StatusCollapse term={request.input} created={request.summary_id} status={request.status} value={request.tracking_id} kcProps={this.props}/>
+                <StatusCollapse term={this.checkInputType(request.input)} created={moment(request.start_time).format("dddd, MMMM Do, YYYY")} status={request.status} value={request.tracking_id} kcProps={this.props}/>
                 </div>)
               })
               }
