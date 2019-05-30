@@ -326,19 +326,11 @@ class BulkVerify extends Component {
     formData.append('username', this.props.userDetails.preferred_username)
     formData.append('user_id', this.props.userDetails.sub)
 
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count')),
-      trackingIds: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      const {count, trackingIds} = this.state
-      if (count == null || (count < 5 && trackingIds.length < 5)) {
-        instance.post(`/bulk`, formData, config)
-          .then((response) => {
+   instance.post(`/bulk`, formData, config)
+        .then((response) => {
             this.setState({
               disableButton: false
             })
-            let term = `TAC: ${param}`
-            getSetTrackingId(response, term)
             this.setState({
               trackingId: response.data.task_id,
               alert: {
@@ -362,19 +354,8 @@ class BulkVerify extends Component {
             })
             errors(this, error)
           })
-      } else {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: i18next.t('errors.limitExceed'),
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
+      } 
+    
   /**
    * Post Data to server "File input selected"
    * Returns: Update state by response or throw error
@@ -391,20 +372,12 @@ class BulkVerify extends Component {
         enabled: false
       },
     })
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count')),
-      trackingIds: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      const {count, trackingIds} = this.state
-      if (count == null || (count < 5 && trackingIds.length < 5)) {
-        instance.post(`/bulk`, formData, config)
+      instance.post(`/bulk`, formData, config)
           .then((response) => {
             this.setState({
               disableButton: false,
               trackingId: response.data.task_id,
             })
-            let term = file.name
-            getSetTrackingId(response, term)
             this.setState({
               alert: {
                 enabled: true,
@@ -412,6 +385,7 @@ class BulkVerify extends Component {
                 type: 'success'
               },
             })
+            console.log(response.data.task_id)
             //Timeout function for Alert
             setTimeout(() => {
               this.setState({
@@ -427,37 +401,8 @@ class BulkVerify extends Component {
               disableButton: false
             })
           })
-      } else {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: i18next.t('errors.limitExceed'),
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
-  componentDidMount() {
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count'))
-    }, () => {
-      const {count} = this.state
-      if (count >= 5) {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: i18next.t('errors.limitExceeded'),
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
+      } 
+      
   render() {
     return (
       <I18n ns="translations">

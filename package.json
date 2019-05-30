@@ -19,6 +19,7 @@
     "jest-mock": "^24.8.0",
     "jwt-decode": "^2.2.0",
     "keycloak-js": "^4.5.0",
+    "moment": "^2.24.0",
     "node-sass": "^4.9.4",
     "react": "^16.6.0",
     "react-content-loader": "^3.2.0",
