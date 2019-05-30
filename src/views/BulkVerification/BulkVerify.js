@@ -385,7 +385,6 @@ class BulkVerify extends Component {
                 type: 'success'
               },
             })
-            console.log(response.data.task_id)
             //Timeout function for Alert
             setTimeout(() => {
               this.setState({
