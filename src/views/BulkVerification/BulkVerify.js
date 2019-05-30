@@ -14,7 +14,7 @@ import {Link} from 'react-router-dom';
 import {translate, I18n} from 'react-i18next';
 import {Card, CardTitle, Form, Alert} from 'reactstrap';
 import {withFormik, Field} from 'formik';
-import {getAuthHeader, getExtension, errors, getSetTrackingId, instance} from '../../utilities/helpers'
+import {getAuthHeader, getExtension, errors, instance} from '../../utilities/helpers'
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
