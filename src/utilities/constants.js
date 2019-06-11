@@ -24,3 +24,7 @@ if(apiUse) {
 } else if(apimanUse) {
  BASE_URL = `${apimanHost}${apimanPort ? ':'+ apimanPort: ''}${apimanClientId}`;
 }
+
+export const SAME_REQUEST_SPANISH = "Eres petición ya está en proceso no puede procesar una nueva solicitud con los mismos datos. Rastrear el uso de esta identificación,";
+export const SAME_REQUEST_ENGLISH = "You're request is already in process cannot process another request with same data. Track using this id,"
+export const SAME_REQUEST_INDONESIAN = "Anda permintaan sudah di proses tidak dapat memproses permintaan lain dengan data yang sama. Melacak menggunakan id ini,"

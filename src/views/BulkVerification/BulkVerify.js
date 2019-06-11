@@ -14,7 +14,8 @@ import {Link} from 'react-router-dom';
 import {translate, I18n} from 'react-i18next';
 import {Card, CardTitle, Form, Alert} from 'reactstrap';
 import {withFormik, Field} from 'formik';
-import {getAuthHeader, getExtension, errors, getSetTrackingId, instance} from '../../utilities/helpers'
+import {getAuthHeader, getExtension, errors, instance, SweetAlert} from '../../utilities/helpers'
+import {SAME_REQUEST_SPANISH, SAME_REQUEST_INDONESIAN, SAME_REQUEST_ENGLISH} from '../../utilities/constants';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
@@ -331,6 +332,14 @@ class BulkVerify extends Component {
             this.setState({
               disableButton: false
             })
+            if(response.data.message === SAME_REQUEST_SPANISH || response.data.message === SAME_REQUEST_ENGLISH || response.data.message === SAME_REQUEST_INDONESIAN){
+              SweetAlert({
+                title: i18next.t('error'),
+                message: response.data.message,
+                type: 'error'
+              })
+              this.setState({trackingId:''})
+            }else{
             this.setState({
               trackingId: response.data.task_id,
               alert: {
@@ -339,14 +348,8 @@ class BulkVerify extends Component {
                 type: 'success'
               },
             })
-            //Timeout function for Alert
-            setTimeout(() => {
-              this.setState({
-                alert: {
-                  enabled: false
-                },
-              })
-            }, 10000);
+            }
+          
           })
           .catch((error) => {
             this.setState({
@@ -385,7 +388,6 @@ class BulkVerify extends Component {
                 type: 'success'
               },
             })
-            console.log(response.data.task_id)
             //Timeout function for Alert
             setTimeout(() => {
               this.setState({
@@ -423,8 +425,11 @@ class BulkVerify extends Component {
                 </Card>
                 {(this.state.alert.enabled) &&
                 <Alert color={this.state.alert.type === "success" ? 'success' : 'danger'}>
-                  {this.state.alert.message} <Link
+                  {this.state.alert.message} 
+                  {/* <Route path="/check-status" name="check status" render={() => <CheckStatus /> } />{this.state.alert.type === "success" ? this.state.trackingId : ''} */}
+                  <Link
                   to={`/check-status`}>{this.state.alert.type === "success" ? this.state.trackingId : ''}</Link>
+
                 </Alert>
                 }
               </div>
