@@ -142,6 +142,7 @@ i18n
                     "copyright": "Copyright",
                     "allRightsReserved": "All Rights Reserved",
                     "Version": "Version",
+                    "requestPresent":"You are request is already in process can not process a new request"
                 }
             },
             es: {
@@ -261,6 +262,7 @@ i18n
                     "copyright": "Derechos",
                     "allRightsReserved": "Todos Los Derechos Reservados",
                     "Version": "Versión",
+                    "requestPresent":"Eres petición ya está en proceso no puede procesar una nueva solicitu"
                 }
             },
             id: {
@@ -380,6 +382,7 @@ i18n
                     "copyright": "Hak Cipta",
                     "allRightsReserved": "Seluruh Hak Cipta",
                     "Version": "Versi",
+                    "requestPresent":"Permintaan Anda sudah dalam proses tidak dapat memproses permintaan baru"
 
 
                 }
