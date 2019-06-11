@@ -11,13 +11,14 @@
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
 import {Row, Col, Button, Collapse} from 'reactstrap';
-import {errors, getAuthHeader, instance, deleteTrackingId, SweetAlert} from '../../utilities/helpers'
+import {errors, getAuthHeader, instance, SweetAlert} from '../../utilities/helpers'
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BulkVerifyStatusTable from '../../views/BulkVerification/BulkVerifyStatusTable'
 import FileSaver from "file-saver";
 import i18n from "../../i18n";
 import moment from 'moment';
+import BoxLoader from '../../components/BoxLoader/BoxLoader';
 
 /**
  * React Stateful component consist of Bulk status information
@@ -38,7 +39,7 @@ export class StatusCollapse extends Component {
     this.toggle = this.toggle.bind(this);
     this.downloadRecord = this.downloadRecord.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
-  }
+   }
 
   /**
    * HOC function to update token
@@ -78,8 +79,8 @@ export class StatusCollapse extends Component {
       //Fetch Status
       instance.post(`/bulkstatus/${this.props.value}`, null, config)
         .then((response) => {
-           //If the State is PENDING
-          if (this.props.status === "PENDING") {
+         if(i18n.t('checkStatus.status.pending') === this.props.status){
+          //If the State is PENDING
            
             SweetAlert({
               title: i18n.t('info'),
@@ -87,9 +88,9 @@ export class StatusCollapse extends Component {
               type: 'info'
             })
             
-          }
+         }
           //If state = SUCCESS
-          else if (this.props.status === "SUCCESS") {
+          else if (i18n.t('checkStatus.status.success') === this.props.status) {
             //If Report is not generated
             if (response.data.result.compliant_report_name === "report not generated.") {
               this.setState({
@@ -110,19 +111,18 @@ export class StatusCollapse extends Component {
             });
              
           } else {
-            //Delete the record when its seen
-            deleteTrackingId(this.props.value)
             this.setState({
               collapse: false,
-              status: "Not found"
+              status: "Already Exists"
             });
             SweetAlert({
-              title: i18n.t('info'),
-              message: i18n.t('status.NotFound'),
+              title: i18n.t('error'),
+              message: i18n.t('checkStatus.status.notFound'),
               type: 'error'
             })
           }
-        })
+        }
+        )
         .catch((error) => {
           this.setState({
             collapse: false
@@ -186,7 +186,9 @@ class CheckStatus extends Component {
     super(props);
     this.state = {
       requests: null,
-      noIds: true
+      noIds: true, 
+      result:[],
+      apiFetched: false
     }
   }
 
@@ -217,26 +219,38 @@ class CheckStatus extends Component {
       return "TAC: "+type
     }
   }
+  
+  
+getUniqueValues =(value)=>{ 
+  return Array.from(new Set(value.map( s => s.tracking_id)))
+ .map(id => {
+   return  value.find(s => s.tracking_id === id)  
+ }) 
+ }
 
   getAllRequests = (config) =>{
     let userId = this.props.userDetails.sub;
-    instance.get('/requests/'+userId, config)
+    instance.get('/requests/'+ userId, config)
           .then((response) => {
-            if(response.data.length>0){
+            if(response.data.length>0){   
               this.setState({
-                requests: response.data,
-                noIds: false
-              })
+                requests:this.getUniqueValues(response.data),
+                noIds: false,
+                apiFetched: true
+              },()=>{ })
             }else{
               this.setState({
-                noIds: true
+                noIds: true,
+                apiFetched: true
               })
             }    
             })
+           
   }
 
   componentDidMount() {
      this.updateTokenHOC(this.getAllRequests)
+     
           }
 
   render() {
@@ -247,7 +261,9 @@ class CheckStatus extends Component {
           (t) => (
             <div className="tablerowbox">
               <ToastContainer/>
-              {noIds ? <div className='nodata'>{t('checkStatus.noResults')}</div> :
+              {noIds ? <div className='nodata'>{t('checkStatus.noResults')}</div> : requests.length < 0 ?  
+                <BoxLoader/>
+                :
                 <Row className="tablehead">
                   <Col md="4">{t('checkStatus.trackingId')}</Col>
                   <Col md="2">{t('checkStatus.currentStatus')}</Col>
