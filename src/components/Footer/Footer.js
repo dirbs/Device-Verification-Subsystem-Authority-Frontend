@@ -28,7 +28,7 @@ class Footer extends Component {
                 (t) => (
         <footer className="app-footer">
             <div>&copy; {t('copyright')} 2018 <span>DIRBS</span>. {t('allRightsReserved')}.</div>
-            <div><b>{t('Version')}: </b>1.0.0</div>
+            <div><b>{t('Version')}: </b>2.0.0</div>
         </footer>
                 )
             }
