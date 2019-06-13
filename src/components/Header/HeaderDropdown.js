@@ -25,6 +25,7 @@ import {
   Dropdown
 } from 'reactstrap';
 import i18next from "i18next";
+import i18n from '../../i18n'
 
 class HeaderDropdown extends Component {
 
@@ -51,7 +52,7 @@ class HeaderDropdown extends Component {
           <span className="fa fa-caret-down"></span>
         </DropdownToggle>
         <DropdownMenu right>
-          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i>{i18next.t("logout")}</DropdownItem>
+          <DropdownItem onClick={this.props.kc.logout}><i className="fa fa-lock"></i>{i18n.t("logout")}</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     );
