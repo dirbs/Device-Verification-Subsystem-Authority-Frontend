@@ -9,7 +9,7 @@ Redistribution and use in source and binary forms, with or without modification,
  
 
 SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
-Copyright (c) 2018 Qualcomm Technologies, Inc.
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
 This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
 Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
 ·         The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment is required by displaying the trademark/logo as per the details provided here: https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
