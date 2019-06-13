@@ -59,6 +59,7 @@ const BoxLoader = props => (
         height={20}
         width={100}
         speed={4}
+        ariaLabel={false}
         primaryColor="#ddd"
         secondaryColor="#fff"
         {...props}>
