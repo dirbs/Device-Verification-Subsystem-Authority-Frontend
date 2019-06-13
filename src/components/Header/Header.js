@@ -58,6 +58,7 @@ import {
 } from 'reactstrap';
 import HeaderDropdown from './HeaderDropdown';
 import {I18n} from "react-i18next";
+import HeaderLanguage from './HeaderLanguage';
 
 class Header extends Component {
 
@@ -90,6 +91,7 @@ class Header extends Component {
                         </NavbarToggler>
                         <Nav className="ml-auto" navbar>
                             <HeaderDropdown {...this.props} />
+                            <HeaderLanguage />
                         </Nav>
                     </header>
                 )
