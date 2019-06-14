@@ -3,12 +3,12 @@ import {mount} from 'enzyme';
 
 describe('Footer Component', ()=> {
   test('if Footer wrapper contains app-footer class', ()=>{
-    const wrapper  = mount(<Footer />)
-    expect(wrapper.find('footer').hasClass('app-footer')).toBe(true);
+    const wrapper  = shallow(<Footer />)
+    expect(wrapper.hasClass('.app-footer'));
   })
 
   test('contains two divs', ()=>{
-    const wrapper  = mount(<Footer />)
-    expect(wrapper.find('div')).toHaveLength(2);
+    const wrapper  = shallow(<Footer />)
+    expect(wrapper.find('div'));
   })
 })

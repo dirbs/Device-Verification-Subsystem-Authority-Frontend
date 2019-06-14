@@ -64,14 +64,4 @@ describe("Full component", () => {
     )
     expect(wrapper.find('BulkVerify').length).toEqual(1)
   })
-  test('if redirects to CheckStatus correctly',()=>{
-    const wrapper = mount(
-      <MemoryRouter initialEntries={['/check-status']}>
-        <I18nextProvider i18n={i18n}>
-          <Full userDetails={{preferred_username: 'test'}} kc={mockKcProps}/>
-        </I18nextProvider>
-      </MemoryRouter>
-    )
-    expect(wrapper.find('CheckStatus').length).toEqual(1)
-  })
 })

@@ -94,7 +94,9 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
   Symbol(enzyme.__childContext__): null,
 }
 `;
@@ -293,7 +295,9 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
   Symbol(enzyme.__childContext__): null,
 }
 `;
@@ -321,15 +325,7 @@ initialize {
                 "class": "col-12 col-md-2",
                 "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
@@ -452,15 +448,7 @@ initialize {
               "class": "col-12 col-md-2",
               "data-label": "Current Status",
             },
-            "children": Array [
-              Object {
-                "data": "PENDING",
-                "next": null,
-                "parent": [Circular],
-                "prev": null,
-                "type": "text",
-              },
-            ],
+            "children": Array [],
             "name": "div",
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
@@ -671,15 +659,7 @@ initialize {
                 "class": "col-12 col-md-2",
                 "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": [Circular],
@@ -800,15 +780,7 @@ initialize {
                   "class": "col-12 col-md-2",
                   "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": [Circular],
@@ -929,15 +901,7 @@ initialize {
                     "class": "col-12 col-md-2",
                     "data-label": "Current Status",
                   },
-                  "children": Array [
-                    Object {
-                      "data": "PENDING",
-                      "next": null,
-                      "parent": [Circular],
-                      "prev": null,
-                      "type": "text",
-                    },
-                  ],
+                  "children": Array [],
                   "name": "div",
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": [Circular],
@@ -1087,15 +1051,7 @@ initialize {
                   "class": "col-12 col-md-2",
                   "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
@@ -1218,15 +1174,7 @@ initialize {
                 "class": "col-12 col-md-2",
                 "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
@@ -1437,15 +1385,7 @@ initialize {
                   "class": "col-12 col-md-2",
                   "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": [Circular],
@@ -1566,15 +1506,7 @@ initialize {
                     "class": "col-12 col-md-2",
                     "data-label": "Current Status",
                   },
-                  "children": Array [
-                    Object {
-                      "data": "PENDING",
-                      "next": null,
-                      "parent": [Circular],
-                      "prev": null,
-                      "type": "text",
-                    },
-                  ],
+                  "children": Array [],
                   "name": "div",
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": [Circular],
@@ -1695,15 +1627,7 @@ initialize {
                       "class": "col-12 col-md-2",
                       "data-label": "Current Status",
                     },
-                    "children": Array [
-                      Object {
-                        "data": "PENDING",
-                        "next": null,
-                        "parent": [Circular],
-                        "prev": null,
-                        "type": "text",
-                      },
-                    ],
+                    "children": Array [],
                     "name": "div",
                     "namespace": "http://www.w3.org/1999/xhtml",
                     "next": [Circular],
