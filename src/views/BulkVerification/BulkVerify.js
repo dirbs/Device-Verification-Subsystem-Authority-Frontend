@@ -62,6 +62,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
 import * as i18next from "i18next";
+import i18n from "../../i18n";
 
 /**
  * React functional (presentational) component used in WithFormik HOC
