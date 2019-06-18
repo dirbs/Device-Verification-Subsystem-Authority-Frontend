@@ -6,7 +6,8 @@ require('jest-localstorage-mock');
 Enzyme.configure({ adapter: new Adapter() });
 
 const mockKcProps = {
-  'isTokenExpired' : sinon.spy()
+  'isTokenExpired' : sinon.spy(),
+  'updateToken' : sinon.spy()
 }
 
 

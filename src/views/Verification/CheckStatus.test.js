@@ -6,6 +6,11 @@ import React from "react";
 import mockAxios from 'jest-mock-axios';
 import {toast} from "react-toastify";
 import FileSaver from "file-saver";
+import sinon from 'sinon'
+
+const userDetails = {
+  preferred_username: "User"
+}
 
 //Mock File-saver
 jest.mock('file-saver', ()=>({saveAs: jest.fn()}))
@@ -37,7 +42,7 @@ describe("Check status component", () => {
     )
     expect(wrapper).toMatchSnapshot()
   });
-  /* test("if componentDidMount renders values correctly", () => {
+   /* test("if componentDidMount renders values correctly", () => {
     const wrapper = mount(
       <I18nextProvider i18n={i18n}>
         <CheckStatus/>
@@ -49,12 +54,12 @@ describe("Check status component", () => {
     //expect(wrapper.find('CheckStatus').state().tracking_ids.length).toBe(0)
     //No Results found HTML to be found
     //expect(wrapper.contains(<div className="nodata">No Results found</div>)).toBe(true)
-  }) */
+  })  */
 }) 
 
 describe("Check status component with tracking Ids", () => {
   beforeEach(() => {
-    mockAxios.reset()
+   // mockAxios.reset()
     // values stored in tests will also be available in other tests unless you run
     localStorage.clear();
     // localStorage.count = 1;
@@ -71,18 +76,16 @@ describe("Check status component with tracking Ids", () => {
       }
     ])
   });
-  test("if toggle with PENDING status", () => {
-    const fn = jest.fn();
-    toast.onChange(fn);
-
-    const wrapper = shallow(
-      <I18nextProvider i18n={i18n}>
-        <CheckStatus kc={mockKcProps}/>
-      </I18nextProvider>);
-
+  test("if toggle with PENDING status",async () => {
+    const fn = jest.fn()
+     const wrapper = shallow(
+        <CheckStatus kc={{ updateToken : mockKcProps}}/>
+  );
+  console.log(wrapper.instance());
     //State PENDING
     //Check status button
-   // wrapper.find('Button')
+    wrapper.find('Button')
+    console.log(wrapper.find('Button'))
     //API call mock
     let statusResponse = {
       data: {
@@ -106,18 +109,16 @@ describe("Check status component with tracking Ids", () => {
       },
       status: 200
     }
-  //  mockAxios.mockResponse(statusResponse)
+    console.log(mockAxios);
+    //mockAxios.mockResponse(statusResponse)
     wrapper.update()
 
     //Tests
     jest.runAllTimers();
-    //expect(fn).toHaveBeenCalled()
-  //  expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('PENDING')
+   // expect(fn).toHaveBeenCalled()
+   // expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('PENDING')
 
-    //State SUCCESS
-    //Check status button
   //  wrapper.find('StatusCollapse').at(0).find('button').simulate('click')
-    //API call mock
     statusResponse = {
       data: {
         result: {
@@ -142,14 +143,12 @@ describe("Check status component with tracking Ids", () => {
     }
   //  mockAxios.mockResponse(statusResponse)
     wrapper.update()
-   /*  expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('SUCCESS')
-    expect(wrapper.find('StatusCollapse').at(0).state().hasReport).toEqual(false)
-    expect(wrapper.find('StatusCollapse').at(0).state().fileName).toEqual('') */
+//    expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('SUCCESS')
+//    expect(wrapper.find('StatusCollapse').at(0).state().hasReport).toEqual(false)
+//    expect(wrapper.find('StatusCollapse').at(0).state().fileName).toEqual('') 
   })
   test("if download report", () => {
     const fn = jest.fn();
-    toast.onChange(fn);
-
     const wrapper = shallow(
       <I18nextProvider i18n={i18n}>
         <CheckStatus kc={mockKcProps}/>

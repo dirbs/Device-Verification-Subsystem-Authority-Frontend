@@ -5,6 +5,10 @@ import i18n from "./../../i18nTest"
 import mockAxios from 'jest-mock-axios';
 import {BrowserRouter as Router} from 'react-router-dom';
 
+const userDetails = {
+  preferred_username: "User"
+}
+
 const mockFile = {
   'file': {
     'data': 'mockData'
@@ -140,7 +144,7 @@ describe("Bulk verify component", () => {
     const wrapper = mount(
       <Router>
         <I18nextProvider i18n={i18n}>
-          <BulkVerify kc={mockKcProps}/>
+          <BulkVerify kc={mockKcProps}  userDetails={userDetails}/>
         </I18nextProvider>
       </Router>
     )
@@ -171,7 +175,7 @@ describe("Bulk verify component", () => {
     //Submit button disabled to be false with correct input value
     expect(submit.props().disabled).toBe(false)
     //Submit the form
-    //updatedForm2.find('form').simulate("submit")
+    updatedForm2.find('form').simulate("submit")
 
     let responseObj = {
       data: {
@@ -181,16 +185,16 @@ describe("Bulk verify component", () => {
       status: 200
     }
     //Mocking Axios call with mock data
-  //  mockAxios.mockResponse(responseObj)
+    mockAxios.mockResponse(responseObj)
     const state = wrapper.find('BulkVerify').state()
     //tacPostData should be called once
-    expect(instance.tacPostData.callCount).toEqual(0)
+    expect(instance.tacPostData.callCount).toEqual(1)
     //Count be be reflect the mock value setted
  //   expect(localStorage.__STORE__.count).toEqual("2");
 
     //State update changes
     //Mock trackingId from
-   // expect(state.trackingId).toBe('43f2e547-605b-4e7c-a34e-381a08b45892')
+    expect(state.trackingId).toBe('43f2e547-605b-4e7c-a34e-381a08b45892')
     //Alert in state is updated
     /* expect(state.alert.enabled).toBe(true)
     expect(state.alert.message).toBe("You can track your request using this id") */
@@ -217,7 +221,7 @@ describe("Bulk verify component", () => {
       const wrapper = mount(
         <Router>
           <I18nextProvider i18n={i18n}>
-            <BulkVerify kc={mockKcProps}/>
+            <BulkVerify kc={mockKcProps} userDetails={userDetails}/>
           </I18nextProvider>
         </Router>
       )
@@ -232,7 +236,7 @@ describe("Bulk verify component", () => {
           ]
         }
       })
-     // wrapper.find('button').find({disabled: false}).simulate('click')
+      wrapper.find('button').find({disabled: false}).simulate('click')
 
       //Mock API call
       let mockTrackingId ="546964c0-42d1-47b6-9d09-ac41873accc5"
@@ -243,21 +247,21 @@ describe("Bulk verify component", () => {
         },
         status: 200
       }
-  //    mockAxios.mockResponse(responseObj)
+      mockAxios.mockResponse(responseObj)
 
       //Tests
-    /*   expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(true)
-      expect(wrapper.find('BulkVerify').state().trackingId).toEqual(mockTrackingId) */
+       expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(true)
+      expect(wrapper.find('BulkVerify').state().trackingId).toEqual(mockTrackingId)
       //After timeout will hide alert
       jest.runAllTimers()
-     /*  expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(false) */
+       expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(false)
     })
     test('TSV File submission',()=>{
       const mockFile = new File([''], 'test.tsv', {type: 'tsv'});
       const wrapper = mount(
         <Router>
           <I18nextProvider i18n={i18n}>
-            <BulkVerify kc={mockKcProps}/>
+            <BulkVerify kc={mockKcProps} userDetails={userDetails}/>
           </I18nextProvider>
         </Router>
       )
@@ -272,7 +276,7 @@ describe("Bulk verify component", () => {
           ]
         }
       })
-   //   wrapper.find('button').find({disabled: false}).simulate('click')
+      wrapper.find('button').find({disabled: false}).simulate('click')
 
       //Mock API call
       let mockTrackingId ="546964c0-42d1-47b6-9d09-ac41873accc5"
@@ -283,21 +287,21 @@ describe("Bulk verify component", () => {
         },
         status: 200
       }
-  //    mockAxios.mockResponse(responseObj)
+      mockAxios.mockResponse(responseObj)
 
       //Tests
-     /*  expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(true)
-      expect(wrapper.find('BulkVerify').state().trackingId).toEqual(mockTrackingId) */
+       expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(true)
+      expect(wrapper.find('BulkVerify').state().trackingId).toEqual(mockTrackingId) 
       //After timeout will hide alert
       jest.runAllTimers()
-      /* expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(false) */
+       expect(wrapper.find('BulkVerify').state().alert.enabled).toEqual(false) 
     })
     test('Invalid File',()=>{
       const mockFile = new File([''], 'test.tsv', {type: 'tsv'});
       const wrapper = mount(
         <Router>
           <I18nextProvider i18n={i18n}>
-            <BulkVerify kc={mockKcProps}/>
+            <BulkVerify kc={mockKcProps} userDetails={userDetails}/>
           </I18nextProvider>
         </Router>
       )

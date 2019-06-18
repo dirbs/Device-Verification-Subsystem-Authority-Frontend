@@ -376,7 +376,7 @@ class BulkVerify extends Component {
             })
             if(response.data.message === SAME_REQUEST_SPANISH || response.data.message === SAME_REQUEST_ENGLISH || response.data.message === SAME_REQUEST_INDONESIAN){
               SweetAlert({
-                title: i18next.t('error'),
+                title: i18n.t('error'),
                 message: response.data.message,
                 type: 'error'
               })
@@ -386,7 +386,7 @@ class BulkVerify extends Component {
               trackingId: response.data.task_id,
               alert: {
                 enabled: true,
-                message: i18next.t('bulkverify.responseMessgae'),
+                message: i18n.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
@@ -426,7 +426,7 @@ class BulkVerify extends Component {
             this.setState({
               alert: {
                 enabled: true,
-                message: i18next.t('bulkverify.responseMessgae'),
+                message: i18n.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
