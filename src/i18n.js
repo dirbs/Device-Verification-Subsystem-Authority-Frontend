@@ -65,7 +65,7 @@ i18n
             en: {
                 translations: {
                     // App Name
-                    "deviceVerificationSystem": "Device Verification System",
+                    "deviceVerificationSystem": "Device Verification Subsystem",
 
                     //Greetings
                     "greetings": "Hi",
