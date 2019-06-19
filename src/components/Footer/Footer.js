@@ -51,7 +51,7 @@ WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */ 
 import React, {Component} from 'react';
-import {I18n} from "react-i18next";
+import {I18n, translate} from "react-i18next";
 
 class Footer extends Component {
   render() {
@@ -69,4 +69,4 @@ class Footer extends Component {
     )
   }
 }
-export default Footer;
+export default translate('translations')(Footer);

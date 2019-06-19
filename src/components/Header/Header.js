@@ -57,7 +57,7 @@ import {
   NavbarBrand
 } from 'reactstrap';
 import HeaderDropdown from './HeaderDropdown';
-import {I18n} from "react-i18next";
+import {I18n, translate} from "react-i18next";
 import HeaderLanguage from './HeaderLanguage';
 
 class Header extends Component {
@@ -102,4 +102,4 @@ class Header extends Component {
             };
 }
 
-export default Header;
+export default translate('translations')(Header);

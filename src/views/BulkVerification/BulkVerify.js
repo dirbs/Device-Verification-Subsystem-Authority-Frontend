@@ -61,7 +61,6 @@ import {SAME_REQUEST_SPANISH, SAME_REQUEST_INDONESIAN, SAME_REQUEST_ENGLISH} fro
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
-import * as i18next from "i18next";
 import i18n from "../../i18n";
 
 /**
@@ -115,7 +114,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: i18next.t('errors.invalidFormat')
+            message: i18n.t('errors.invalidFormat')
           }
         })
       }
@@ -165,7 +164,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: i18next.t('errors.invalidFormat')
+            message: i18n.t('errors.invalidFormat')
           }
         })
       }
@@ -173,7 +172,7 @@ export class BulkVerifyForm extends Component {
       this.setState({
         inputError: {
           enabled: true,
-          message: i18next.t('errors.FeildReq')
+          message: i18n.t('errors.FeildReq')
         }
       })
     }
@@ -277,17 +276,17 @@ export const MyEnhancedForm = withFormik({
     let errors = {};
     // IMEIs Validation
     if (!values.tac) {
-      errors.tac = i18next.t('errors.FeildReq')
+      errors.tac = i18n.t('errors.FeildReq')
     } else if (values.tac.length > 8) {
-      errors.tac = i18next.t('errors.tacLength')
+      errors.tac = i18n.t('errors.tacLength')
     } else if (values.tac.length < 8) {
-      errors.tac = i18next.t('errors.tacLength')
+      errors.tac = i18n.t('errors.tacLength')
     }
     if (isNaN(Number(values.tac))) {
-      errors.tac = i18next.t('errors.tacType')
+      errors.tac = i18n.t('errors.tacType')
     }
     if (/\s/g.exec(values.tac) !== null) {
-      errors.tac = i18next.t("errors.enterValidTac")
+      errors.tac = i18n.t("errors.enterValidTac")
     }
     return errors;
   },

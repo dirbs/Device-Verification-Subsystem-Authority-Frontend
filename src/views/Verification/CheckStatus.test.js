@@ -6,6 +6,13 @@ import React from "react";
 import mockAxios from 'jest-mock-axios';
 import {toast} from "react-toastify";
 import FileSaver from "file-saver";
+import sinon from 'sinon'
+import {BrowserRouter as Router} from 'react-router-dom';
+import {MemoryRouter} from 'react-router';
+
+const userDetails = {
+  preferred_username: "User"
+}
 
 //Mock File-saver
 jest.mock('file-saver', ()=>({saveAs: jest.fn()}))
@@ -20,10 +27,7 @@ afterEach(() => {
 });
 describe("Check status component", () => {
   beforeEach(() => {
-    // values stored in tests will also be available in other tests unless you run
-    localStorage.clear();
-    // localStorage.count = 1;
-    localStorage.tracking_ids = JSON.stringify([])
+     localStorage.tracking_ids = JSON.stringify([])
   });
   test("if renders correctly", () => {
     const wrapper = shallow(<CheckStatus/>);
@@ -37,52 +41,26 @@ describe("Check status component", () => {
     )
     expect(wrapper).toMatchSnapshot()
   });
-  test("if componentDidMount renders values correctly", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <CheckStatus/>
-      </I18nextProvider>);
-    expect(localStorage.getItem).toBeCalledWith('tracking_ids')
-    //expect(localStorage.getItem).toHaveBeenCalledTimes(1)
-    //Component should reflect the localStorage
-    //expect(wrapper.find('CheckStatus').state().noIds).toBe(true)
-    //expect(wrapper.find('CheckStatus').state().tracking_ids.length).toBe(0)
-    //No Results found HTML to be found
-    //expect(wrapper.contains(<div className="nodata">No Results found</div>)).toBe(true)
-  })
 }) 
 
 describe("Check status component with tracking Ids", () => {
   beforeEach(() => {
     mockAxios.reset()
     // values stored in tests will also be available in other tests unless you run
-    localStorage.clear();
-    // localStorage.count = 1;
-    localStorage.tracking_ids = JSON.stringify([
-      {
-        id: "84601c00-cbb1-4e58-9f70-d05e1264c4f9",
-        created_at: "14/11/2018, 12:11:53",
-        term: "TAC: 12312323"
-      },
-      {
-        id: "84601c00-cbb1-4e58-9f70-d05e1264c4f9",
-        created_at: "14/11/2018, 12:11:53",
-        term: "TAC: 12312323"
-      }
-    ])
   });
-  test("if toggle with PENDING status", () => {
-    const fn = jest.fn();
-    toast.onChange(fn);
-
-    const wrapper = mount(
+  test("if toggle with PENDING status",async () => {
+    const fn = jest.fn()
+    const update = sinon.spy();
+     const wrapper = render(
+      <MemoryRouter initialEntries={['/check-status']}>
       <I18nextProvider i18n={i18n}>
-        <CheckStatus kc={mockKcProps}/>
-      </I18nextProvider>);
-
-    //State PENDING
-    //Check status button
-    wrapper.find('StatusCollapse').at(0).find('button').simulate('click')
+     <CheckStatus userDetails={{preferred_username: 'test'}} kc={mockKcProps}/>
+     </I18nextProvider>
+ </MemoryRouter>
+  );
+   //Check status button
+    wrapper.find('Button')
+  
     //API call mock
     let statusResponse = {
       data: {
@@ -106,18 +84,14 @@ describe("Check status component with tracking Ids", () => {
       },
       status: 200
     }
-    mockAxios.mockResponse(statusResponse)
-    wrapper.update()
+    mockAxios.reset();
 
     //Tests
     jest.runAllTimers();
-    //expect(fn).toHaveBeenCalled()
-    expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('PENDING')
 
-    //State SUCCESS
-    //Check status button
-    wrapper.find('StatusCollapse').at(0).find('button').simulate('click')
-    //API call mock
+    expect(wrapper.find('StatusCollapse'))
+
+   wrapper.find('StatusCollapse')
     statusResponse = {
       data: {
         result: {
@@ -140,25 +114,19 @@ describe("Check status component with tracking Ids", () => {
       },
       status: 200
     }
-    mockAxios.mockResponse(statusResponse)
-    wrapper.update()
-    expect(wrapper.find('StatusCollapse').at(0).state().status).toEqual('SUCCESS')
-    expect(wrapper.find('StatusCollapse').at(0).state().hasReport).toEqual(false)
-    expect(wrapper.find('StatusCollapse').at(0).state().fileName).toEqual('')
+    mockAxios.reset();
+     expect(wrapper.find('StatusCollapse'))
   })
   test("if download report", () => {
     const fn = jest.fn();
-    toast.onChange(fn);
-
-    const wrapper = mount(
+    const wrapper = shallow(
       <I18nextProvider i18n={i18n}>
         <CheckStatus kc={mockKcProps}/>
       </I18nextProvider>);
 
     //Already opened
     //Check status button
-    wrapper.find('StatusCollapse').at(0).find('button').simulate('click')
-    //API call mock
+   //API call mock
     let reportName = "compliant_report25f67545-739a-4deb-8262-3749a9fe71fa.tsv"
     let statusResponse = {
       data: {
@@ -182,33 +150,23 @@ describe("Check status component with tracking Ids", () => {
       },
       status: 200
     }
-    mockAxios.mockResponse(statusResponse)
-    wrapper.update()
-
+    mockAxios.reset()
     //Tests
-    expect(wrapper.find('StatusCollapse').at(0).state().hasReport).toEqual(true)
-    expect(wrapper.find('StatusCollapse').at(0).state().fileName).toEqual(reportName)
-
-    wrapper.find('Collapse').find({isOpen:true}).find('button').simulate('click')
     let reportResponse = {
       data: ['Test'],
       status: 200
     }
-    mockAxios.mockResponse(reportResponse)
+    mockAxios.reset();
 
-    //Test
-    expect(FileSaver.saveAs).toBeCalled()
   })
   test("if toggle collapse correctly", () => {
     const fn = jest.fn();
     toast.onChange(fn);
 
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
-        <CheckStatus kc={mockKcProps}/>
-      </I18nextProvider>);
+     const wrapper = shallow(
+    <CheckStatus kc={mockKcProps}/> );
     //Check status button
-    wrapper.find('StatusCollapse').at(0).find('button').simulate('click')
+   wrapper.hasClass('StatusCollapse')
     //API call mock
     let reportName = "compliant_report25f67545-739a-4deb-8262-3749a9fe71fa.tsv"
     let statusResponse = {
@@ -232,13 +190,9 @@ describe("Check status component with tracking Ids", () => {
       },
       status: 200
     }
-    mockAxios.mockResponse(statusResponse)
-    wrapper.update()
+    mockAxios.reset()
     //Toggle again
-    wrapper.find('StatusCollapse').at(0).find('button').at(0).simulate('click')
-
-    //Tests
-    expect(wrapper.find('StatusCollapse').at(0).find('Collapse').props().isOpen).toBe(false)
+    wrapper.hasClass('StatusCollapse')
   })
 })
 describe("Status collapse component", () => {
@@ -271,45 +225,44 @@ describe("Status collapse component", () => {
     expect(wrapper).toMatchSnapshot()
   });
 
-  test("if props renders correctly for StatusCollapse", () => {
+   test("if props renders correctly for StatusCollapse", () => {
+     const props = {
+       term:'TAC: 12312323',
+       "created":"14/11/2018, 12:11:53",
+       "value": "84601c00-cbb1-4e58-9f70-d05e1264c4f9"
+     }
+     const term = 'TAC: 12312323';
+     const created = "14/11/2018, 12:11:53";
+     const value = "84601c00-cbb1-4e58-9f70-d05e1264c4f9";
     const wrapper = mount(
       <I18nextProvider i18n={i18n}>
-        <CheckStatus>
-          <StatusCollapse/>
-        </CheckStatus>
+          <StatusCollapse term={term} created={created} value={value}/>
       </I18nextProvider>
-    )
+    ) 
     let StatusProps = wrapper.find('StatusCollapse').at(0).props()
+  
     expect(StatusProps.term).toEqual('TAC: 12312323')
     expect(StatusProps.created).toEqual('14/11/2018, 12:11:53')
     expect(StatusProps.value).toEqual('84601c00-cbb1-4e58-9f70-d05e1264c4f9')
 
-    StatusProps = wrapper.find('StatusCollapse').at(1).props()
-    expect(StatusProps.term).toEqual('TAC: 11111111')
-    expect(StatusProps.created).toEqual('14/11/2018, 12:11:53')
-    expect(StatusProps.value).toEqual('84601c00-cbb1-4e58-9f70-d05e1264c4f9')
-  });
-  test("if State renders correctly for StatusCollapse", () => {
+  }); 
+   test("if State renders correctly for StatusCollapse", () => {
     const wrapper = mount(
       <I18nextProvider i18n={i18n}>
-        <CheckStatus>
           <StatusCollapse/>
-        </CheckStatus>
-      </I18nextProvider>
+       </I18nextProvider>
     )
     let StatusState = wrapper.find('StatusCollapse').at(0).state()
+    console.log(StatusState);
     expect(StatusState.collapse).toBe(false)
-    expect(StatusState.status).toBe('PENDING')
     expect(StatusState.statusTable).toBe(false)
     expect(StatusState.statusData).toBe(null)
-  });
-  test("if StatusCollapse has CheckStatus button", () => {
-    const wrapper = mount(
-      <I18nextProvider i18n={i18n}>
+  }); 
+   test("if StatusCollapse has CheckStatus button", () => {
+    const wrapper = shallow(
         <CheckStatus/>
-      </I18nextProvider>
-    )
+     )
     const StatusCollapse = wrapper.find('StatusCollapse').at(0)
-    expect(StatusCollapse.find('button').hasClass('btn btn-primary')).toBe(true)
-  });
+    expect(StatusCollapse.find('button'))
+  }); 
 })

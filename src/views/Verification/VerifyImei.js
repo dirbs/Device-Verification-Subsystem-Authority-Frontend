@@ -65,7 +65,6 @@ import SeenWithTable from './SeenWithTable'
 import AssociatedData from './AssociatedData'
 import DeviceStatusTable from './DeviceStatusTable'
 import renderInput from '../../components/Form/renderInput'
-import * as i18next from "i18next";
 
 /**
  * React functional (presentational) component used in WithFormik HOC
@@ -117,9 +116,9 @@ const MyEnhancedForm = withFormik({
     let errors = {};
     // IMEIs Validation
     if (!values.imei) {
-      errors.imei = i18next.t('errors.FeildReq')
+      errors.imei = i18n.t('errors.FeildReq')
     } else if (!/^(?=.[A-F]*)(?=.[0-9]*)[A-Fa-f0-9]{14,16}$/.test(values.imei) ) {
-      errors.imei = i18next.t('errors.Imie')
+      errors.imei = i18n.t('errors.Imie')
     }
     return errors;
   },

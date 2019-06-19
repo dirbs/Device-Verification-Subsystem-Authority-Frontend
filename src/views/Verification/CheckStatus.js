@@ -294,7 +294,6 @@ getUniqueValues =(value)=>{
 
   componentDidMount() {
      this.updateTokenHOC(this.getAllRequests)
-     
           }
 
   render() {

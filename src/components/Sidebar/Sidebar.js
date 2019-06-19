@@ -59,6 +59,7 @@ import nav from './_nav';
 import SidebarMinimizer from './../SidebarMinimizer';
 import { I18n } from 'react-i18next';
 import i18next from "i18next";
+import i18n from '../../i18n';
 
 class Sidebar extends Component {
 
@@ -104,7 +105,7 @@ class Sidebar extends Component {
     };
 
     // simple wrapper for nav-title item
-    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, i18next.t('headerText'))): i18next.t('headerText') ) };
+    const wrapper = item => { return (item.wrapper && item.wrapper.element ? (React.createElement(item.wrapper.element, item.wrapper.attributes, i18n.t('headerText'))): i18n.t('headerText') ) };
 
     // nav list section title
     const title =  (title, key) => {
