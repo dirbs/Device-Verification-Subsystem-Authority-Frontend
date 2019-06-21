@@ -1,23 +1,67 @@
-/*Copyright (c) 2018 Qualcomm Technologies, Inc.
-  All rights reserved.
+/* SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-  Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+  - Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+  - All advertising materials mentioning features or use of this software,
+  or any deployment of this software, or documentation accompanying any
+  distribution of this software, must display the trademark/logo as per the
+  details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission.
 
-  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+  - The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software in a
+  product, an acknowledgment is required by displaying the trademark/logo as
+  per the details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Altered source versions must be plainly marked as such, and must not
+  be misrepresented as being the original software.
+  - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {translate, I18n} from 'react-i18next';
 import {Card, CardTitle, Form, Alert} from 'reactstrap';
 import {withFormik, Field} from 'formik';
-import {getAuthHeader, getExtension, errors, getSetTrackingId, instance} from '../../utilities/helpers'
+import {getAuthHeader, getExtension, errors, instance, SweetAlert} from '../../utilities/helpers'
+import {SAME_REQUEST_SPANISH, SAME_REQUEST_INDONESIAN, SAME_REQUEST_ENGLISH} from '../../utilities/constants';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import renderInput from '../../components/Form/renderInput'
+import i18n from "../../i18n";
 
 /**
  * React functional (presentational) component used in WithFormik HOC
@@ -70,7 +114,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: "Invalid format"
+            message: i18n.t('errors.invalidFormat')
           }
         })
       }
@@ -120,7 +164,7 @@ export class BulkVerifyForm extends Component {
         this.setState({
           inputError: {
             enabled: true,
-            message: "Invalid format"
+            message: i18n.t('errors.invalidFormat')
           }
         })
       }
@@ -128,7 +172,7 @@ export class BulkVerifyForm extends Component {
       this.setState({
         inputError: {
           enabled: true,
-          message: "Input file required"
+          message: i18n.t('errors.FeildReq')
         }
       })
     }
@@ -153,14 +197,14 @@ export class BulkVerifyForm extends Component {
                       <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="bulkTabDelimited" name="bulkMethod"
                                onChange={this.onFileInputChangeHandler}
-                               className="custom-control-input" value="Tab-delimited file"
+                               className="custom-control-input" value={t('bulkverify.tabDelimitedFile')}
                                checked={this.state.showFileInput}/>
                         <label className="custom-control-label" htmlFor="bulkTabDelimited">
                           {t('bulkverify.tab')}</label>
                       </div>
                       <div className="custom-control custom-radio custom-control-inline">
                         <input type="radio" id="bulkEnterTAC" name="bulkMethod"
-                               className="custom-control-input" value="Enter the TAC"
+                               className="custom-control-input" value={t('enterTheTac')}
                                onChange={this.onTacChangeHandler}/>
                         <label className="custom-control-label" htmlFor="bulkEnterTAC">
                           {t('bulkverify.tac')}</label>
@@ -187,7 +231,7 @@ export class BulkVerifyForm extends Component {
                 <div className={this.state.showTac ? 'col-md-4 col-sm-6 bulk-show-method-tac'
                   : 'col-md-4 col-sm-6 bulk-method-tac'}>
                   <Field class="form-group mb-0" clearError={this.state.clearError} maxLength="8"
-                         name="tac" component={renderInput} label="Enter the TAC"
+                         name="tac" component={renderInput} label={t('bulkverify.enterTheTac')}
                          type="text" placeholder="" requiredStar/>
                 </div>
                 }
@@ -232,17 +276,17 @@ export const MyEnhancedForm = withFormik({
     let errors = {};
     // IMEIs Validation
     if (!values.tac) {
-      errors.tac = 'This field is Required'
+      errors.tac = i18n.t('errors.FeildReq')
     } else if (values.tac.length > 8) {
-      errors.tac = 'The Tac must be a 8 digits number'
+      errors.tac = i18n.t('errors.tacLength')
     } else if (values.tac.length < 8) {
-      errors.tac = 'The Tac must be a 8 digits number'
+      errors.tac = i18n.t('errors.tacLength')
     }
     if (isNaN(Number(values.tac))) {
-      errors.tac = 'The Tac must be a number'
+      errors.tac = i18n.t('errors.tacType')
     }
     if (/\s/g.exec(values.tac) !== null) {
-      errors.tac = 'Enter valid Tac'
+      errors.tac = i18n.t("errors.enterValidTac")
     }
     return errors;
   },
@@ -322,35 +366,32 @@ class BulkVerify extends Component {
     })
     const formData = new FormData()
     formData.append('tac', tac)
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count')),
-      trackingIds: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      const {count, trackingIds} = this.state
-      if (count == null || (count < 5 && trackingIds.length < 5)) {
-        instance.post(`/bulk`, formData, config)
-          .then((response) => {
+    formData.append('username', this.props.userDetails.preferred_username)
+    formData.append('user_id', this.props.userDetails.sub)
+
+   instance.post(`/bulk`, formData, config)
+        .then((response) => {
             this.setState({
               disableButton: false
             })
-            let term = `TAC: ${param}`
-            getSetTrackingId(response, term)
+            if(response.data.message === SAME_REQUEST_SPANISH || response.data.message === SAME_REQUEST_ENGLISH || response.data.message === SAME_REQUEST_INDONESIAN){
+              SweetAlert({
+                title: i18n.t('error'),
+                message: response.data.message,
+                type: 'error'
+              })
+              this.setState({trackingId:''})
+            }else{
             this.setState({
               trackingId: response.data.task_id,
               alert: {
                 enabled: true,
-                message: response.data.message,
+                message: i18n.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
-            //Timeout function for Alert
-            setTimeout(() => {
-              this.setState({
-                alert: {
-                  enabled: false
-                },
-              })
-            }, 10000);
+            }
+          
           })
           .catch((error) => {
             this.setState({
@@ -358,19 +399,8 @@ class BulkVerify extends Component {
             })
             errors(this, error)
           })
-      } else {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: "Limit Exceed",
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
+      } 
+    
   /**
    * Post Data to server "File input selected"
    * Returns: Update state by response or throw error
@@ -379,30 +409,24 @@ class BulkVerify extends Component {
   postData(config, file) {
     const formData = new FormData()
     formData.append('file', file)
+    formData.append('username', this.props.userDetails.preferred_username)
+    formData.append('user_id', this.props.userDetails.sub)
     this.setState({
       disableButton: true,
       alert: {
         enabled: false
       },
     })
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count')),
-      trackingIds: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      const {count, trackingIds} = this.state
-      if (count == null || (count < 5 && trackingIds.length < 5)) {
-        instance.post(`/bulk`, formData, config)
+      instance.post(`/bulk`, formData, config)
           .then((response) => {
             this.setState({
               disableButton: false,
               trackingId: response.data.task_id,
             })
-            let term = file.name
-            getSetTrackingId(response, term)
             this.setState({
               alert: {
                 enabled: true,
-                message: response.data.message,
+                message: i18n.t('bulkverify.responseMessgae'),
                 type: 'success'
               },
             })
@@ -421,37 +445,8 @@ class BulkVerify extends Component {
               disableButton: false
             })
           })
-      } else {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: "Limit exceeded",
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
-  componentDidMount() {
-    this.setState({
-      count: JSON.parse(localStorage.getItem('count'))
-    }, () => {
-      const {count} = this.state
-      if (count >= 5) {
-        this.setState({
-          disableButton: true,
-          alert: {
-            enabled: true,
-            message: "Limit exceeded for number of requests",
-            type: 'error'
-          },
-        })
-      }
-    })
-  }
-
+      } 
+      
   render() {
     return (
       <I18n ns="translations">
@@ -472,8 +467,11 @@ class BulkVerify extends Component {
                 </Card>
                 {(this.state.alert.enabled) &&
                 <Alert color={this.state.alert.type === "success" ? 'success' : 'danger'}>
-                  {this.state.alert.message} <Link
+                  {this.state.alert.message} 
+                  {/* <Route path="/check-status" name="check status" render={() => <CheckStatus /> } />{this.state.alert.type === "success" ? this.state.trackingId : ''} */}
+                  <Link
                   to={`/check-status`}>{this.state.alert.type === "success" ? this.state.trackingId : ''}</Link>
+
                 </Alert>
                 }
               </div>

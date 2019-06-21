@@ -1,21 +1,67 @@
-/*Copyright (c) 2018 Qualcomm Technologies, Inc.
-  All rights reserved.
+/* SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-  Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+  - Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+  - All advertising materials mentioning features or use of this software,
+  or any deployment of this software, or documentation accompanying any
+  distribution of this software, must display the trademark/logo as per the
+  details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission.
 
-  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.*/
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+  - The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software in a
+  product, an acknowledgment is required by displaying the trademark/logo as
+  per the details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Altered source versions must be plainly marked as such, and must not
+  be misrepresented as being the original software.
+  - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 import React, {Component} from 'react';
 import {translate, I18n} from 'react-i18next';
 import {Row, Col, Button, Collapse} from 'reactstrap';
-import {errors, getAuthHeader, instance, deleteTrackingId} from '../../utilities/helpers'
-import {ToastContainer, toast} from 'react-toastify';
+import {errors, getAuthHeader, instance, SweetAlert} from '../../utilities/helpers'
+import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import BulkVerifyStatusTable from '../../views/BulkVerification/BulkVerifyStatusTable'
 import FileSaver from "file-saver";
+import i18n from "../../i18n";
+import moment from 'moment';
+import BoxLoader from '../../components/BoxLoader/BoxLoader';
 
 /**
  * React Stateful component consist of Bulk status information
@@ -27,7 +73,7 @@ export class StatusCollapse extends Component {
     super(props);
     this.state = {
       collapse: false,
-      status: 'PENDING',
+      status: '',
       statusTable: false,
       statusData: null,
       fileName: '',
@@ -36,7 +82,7 @@ export class StatusCollapse extends Component {
     this.toggle = this.toggle.bind(this);
     this.downloadRecord = this.downloadRecord.bind(this);
     this.updateTokenHOC = this.updateTokenHOC.bind(this);
-  }
+   }
 
   /**
    * HOC function to update token
@@ -76,15 +122,18 @@ export class StatusCollapse extends Component {
       //Fetch Status
       instance.post(`/bulkstatus/${this.props.value}`, null, config)
         .then((response) => {
+         if(i18n.t('checkStatus.status.pending') === this.props.status){
           //If the State is PENDING
-          if (response.data.state === "PENDING") {
-            toast.warn(response.data.state)
-            this.setState({status: response.data.state})
-          }
+           
+            SweetAlert({
+              title: i18n.t('info'),
+              message: i18n.t('status.pending'),
+              type: 'info'
+            })
+            
+         }
           //If state = SUCCESS
-          else if (response.data.state === "SUCCESS") {
-            //Deletion from Local storage
-            deleteTrackingId(this.props.value)
+          else if (i18n.t('checkStatus.status.success') === this.props.status) {
             //If Report is not generated
             if (response.data.result.compliant_report_name === "report not generated.") {
               this.setState({
@@ -93,27 +142,30 @@ export class StatusCollapse extends Component {
               })
             } else {
               this.setState({
-                fileName: response.data.result.compliant_report_name,
+                fileName: response.data.result.response.compliant_report_name,
                 hasReport: true
               })
-            }
+           }
             //Toggle collapse and update state data
             this.setState({
               collapse: !this.state.collapse,
-              statusData: response.data.result,
-              status: response.data.state
+              statusData: response.data.result.response,
+              status: i18n.t('requestsSuccess')
             });
-
+             
           } else {
-            //Delete the record when its seen
-            deleteTrackingId(this.props.value)
             this.setState({
               collapse: false,
-              status: "Not found"
+              status: "Already Exists"
             });
-            toast.error(response.data.state)
+            SweetAlert({
+              title: i18n.t('error'),
+              message: i18n.t('checkStatus.status.notFound'),
+              type: 'error'
+            })
           }
-        })
+        }
+        )
         .catch((error) => {
           this.setState({
             collapse: false
@@ -135,7 +187,6 @@ export class StatusCollapse extends Component {
         FileSaver.saveAs(file);
       })
       .catch((error) => {
-        console.log('iam here')
         errors(this, error)
       })
   }
@@ -148,7 +199,7 @@ export class StatusCollapse extends Component {
             <div>
               <Row className="tablerow">
                 <Col data-label={t('checkStatus.trackingId')} xs="12" md="4">{this.props.value}</Col>
-                <Col data-label={t('checkStatus.currentStatus')} xs="12" md="2">{this.state.status}</Col>
+                <Col data-label={t('checkStatus.currentStatus')} xs="12" md="2">{this.props.status}</Col>
                 <Col data-label={t('checkStatus.createdAt')} xs="12" md="2">{this.props.created}</Col>
                 <Col data-label={t('checkStatus.term')} xs="12" md="2">{this.props.term}</Col>
                 <Col data-label={t('checkStatus.checkStatus')} xs="12" md="2">
@@ -177,40 +228,85 @@ class CheckStatus extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tracking_ids: [],
-      noIds: true
+      requests: null,
+      noIds: true, 
+      result:[],
+      apiFetched: false
     }
   }
 
-  componentDidMount() {
-    //Populating initial data
-    this.setState({
-      tracking_ids: JSON.parse(localStorage.getItem('tracking_ids'))
-    }, () => {
-      //If there is no data, No Results found will be shown
-      if (this.state.tracking_ids !== null) {
-        if (this.state.tracking_ids.length === 0) {
-          this.setState({
-            noIds: true
-          })
-        } else {
-          this.setState({
-            noIds: false
-          })
-        }
+  updateTokenHOC(callingFunc, param = null) {
+    let config = null;
+    if (this.props) {
+      console.log(this.props)
+      this.props.kc.updateToken(0)
+        .success(() => {
+          localStorage.setItem('token', this.props.kc.token)
+          config = {
+            headers: getAuthHeader(this.props.kc.token)
+          }
+          callingFunc(config, param);
+        })
+        .error(() => this.props.kc.logout());
+    } else {
+      config = {
+        headers: getAuthHeader()
       }
-    })
+      callingFunc(config, param);
+    }
   }
 
+  checkInputType(type){
+    if(type.includes('.tsv')){
+      return "FILE: "+type
+    }else{
+      return "TAC: "+type
+    }
+  }
+  
+  
+getUniqueValues =(value)=>{ 
+  return Array.from(new Set(value.map( s => s.tracking_id)))
+ .map(id => {
+   return  value.find(s => s.tracking_id === id)  
+ }) 
+ }
+
+  getAllRequests = (config) =>{
+    let userId = this.props.userDetails.sub;
+    instance.get('/requests/'+ userId, config)
+          .then((response) => {
+            if(response.data.length>0){   
+              this.setState({
+                requests:this.getUniqueValues(response.data),
+                noIds: false,
+                apiFetched: true
+              },()=>{ })
+            }else{
+              this.setState({
+                noIds: true,
+                apiFetched: true
+              })
+            }    
+            })
+           
+  }
+
+  componentDidMount() {
+     this.updateTokenHOC(this.getAllRequests)
+          }
+
   render() {
-    const {tracking_ids, noIds} = this.state
+    const {requests, noIds} = this.state
     return (
       <I18n ns="translations">
         {
           (t) => (
             <div className="tablerowbox">
               <ToastContainer/>
-              {noIds ? <div className='nodata'>{t('checkStatus.noResults')}</div> :
+              {noIds ? <div className='nodata'>{t('checkStatus.noResults')}</div> : requests.length < 0 ?  
+                <BoxLoader/>
+                :
                 <Row className="tablehead">
                   <Col md="4">{t('checkStatus.trackingId')}</Col>
                   <Col md="2">{t('checkStatus.currentStatus')}</Col>
@@ -219,10 +315,10 @@ class CheckStatus extends Component {
                   <Col md="2">{t('checkStatus.checkStatus')}</Col>
                 </Row>
               }
-              {tracking_ids &&
-              tracking_ids.length > 0 && tracking_ids.map((value, index) => {
+              {requests &&
+              requests.length > 0 && requests.map((request, index) => {
                 return (<div key={index}>
-                  <StatusCollapse term={value.term} created={value.created_at} value={value.id} kcProps={this.props}/>
+                <StatusCollapse term={this.checkInputType(request.input)} created={moment(request.start_time).format("D/MM/YYYY")} status={request.status} value={request.tracking_id} kcProps={this.props}/>
                 </div>)
               })
               }

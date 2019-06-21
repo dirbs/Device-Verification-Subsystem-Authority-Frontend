@@ -109,6 +109,7 @@ ShallowWrapper {
   </LoadNamespace(VerifyImei)>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -139,6 +140,7 @@ ShallowWrapper {
         "_currentRenderer2": null,
         "_currentValue": undefined,
         "_currentValue2": undefined,
+        "_threadCount": 0,
       },
     },
   },
@@ -167,6 +169,7 @@ ShallowWrapper {
           "_currentRenderer2": null,
           "_currentValue": undefined,
           "_currentValue2": undefined,
+          "_threadCount": 0,
         },
       },
     },
@@ -175,11 +178,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
@@ -187,7 +197,10 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -7776,6 +7789,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <LoadNamespace(VerifyImei) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -7796,6 +7810,8 @@ ShallowWrapper {
       "_calculateChangedBits": null,
       "_context": Object {
         "$$typeof": Symbol(react.context),
+        "0": undefined,
+        "1": undefined,
         "Consumer": [Circular],
         "Provider": Object {
           "$$typeof": Symbol(react.provider),
@@ -7806,6 +7822,7 @@ ShallowWrapper {
         "_currentRenderer2": null,
         "_currentValue": undefined,
         "_currentValue2": undefined,
+        "_threadCount": 2,
       },
     },
   },
@@ -7824,6 +7841,8 @@ ShallowWrapper {
         "_calculateChangedBits": null,
         "_context": Object {
           "$$typeof": Symbol(react.context),
+          "0": undefined,
+          "1": undefined,
           "Consumer": [Circular],
           "Provider": Object {
             "$$typeof": Symbol(react.provider),
@@ -7834,6 +7853,7 @@ ShallowWrapper {
           "_currentRenderer2": null,
           "_currentValue": undefined,
           "_currentValue2": undefined,
+          "_threadCount": 2,
         },
       },
     },
@@ -7842,11 +7862,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
@@ -7854,7 +7881,10 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 

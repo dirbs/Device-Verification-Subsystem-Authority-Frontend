@@ -22,11 +22,11 @@ const secondaryColor="#fff"
 describe("Contentloader testing", () => {
   test("if props matches", () => {
     const wrapper = mount(<BoxLoader/>)
-    expect(wrapper.find('ContentLoader').props().height).toEqual(height)
-    expect(wrapper.find('ContentLoader').props().width).toEqual(width)
-    expect(wrapper.find('ContentLoader').props().speed).toEqual(speed)
-    expect(wrapper.find('ContentLoader').props().primaryColor).toEqual(primaryColor)
-    expect(wrapper.find('ContentLoader').props().secondaryColor).toEqual(secondaryColor)
+    expect(wrapper.find('Holder').props().height).toEqual(height)
+    expect(wrapper.find('Holder').props().width).toEqual(width)
+    expect(wrapper.find('Holder').props().speed).toEqual(speed)
+    expect(wrapper.find('Holder').props().primaryColor).toEqual(primaryColor)
+    expect(wrapper.find('Holder').props().secondaryColor).toEqual(secondaryColor)
     expect(wrapper.find('clipPath').children().length).toEqual(6)
   });
 })

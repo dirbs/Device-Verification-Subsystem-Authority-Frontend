@@ -1,15 +1,61 @@
-/*Copyright (c) 2018 Qualcomm Technologies, Inc.
-  All rights reserved.
+/* SPDX-License-Identifier: BSD-4-Clause-Clear
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+All rights reserved.
+Redistribution and use in source and binary forms, with or without
+modification, are permitted (subject to the limitations in the disclaimer
+below) provided that the following conditions are met:
 
-  Redistribution and use in source and binary forms, with or without modification, are permitted (subject to the limitations in the disclaimer below) provided that the following conditions are met:
+  - Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution.
+  - All advertising materials mentioning features or use of this software,
+  or any deployment of this software, or documentation accompanying any
+  distribution of this software, must display the trademark/logo as per the
+  details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Neither the name of Qualcomm Technologies, Inc. nor the names of its
+  contributors may be used to endorse or promote products derived from this
+  software without specific prior written permission.
 
-  * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-* Neither the name of Qualcomm Technologies, Inc. nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-*/
+
+SPDX-License-Identifier: ZLIB-ACKNOWLEDGEMENT
+Copyright (c) 2018-2019 Qualcomm Technologies, Inc.
+This software is provided 'as-is', without any express or implied warranty.
+In no event will the authors be held liable for any damages arising from
+the use of this software.
+Permission is granted to anyone to use this software for any purpose,
+including commercial applications, and to alter it and redistribute it
+freely, subject to the following restrictions:
+
+  - The origin of this software must not be misrepresented; you must not
+  claim that you wrote the original software. If you use this software in a
+  product, an acknowledgment is required by displaying the trademark/logo as
+  per the details provided here:
+  https://www.qualcomm.com/documents/dirbs-logo-and-brand-guidelines
+  - Altered source versions must be plainly marked as such, and must not
+  be misrepresented as being the original software.
+  - This notice may not be removed or altered from any source distribution.
+
+NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE GRANTED BY
+THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND
+CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT
+NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
+PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
+
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import settings from './settings';
+
+const { defaultLanguage } = settings.appDetails;
 
 i18n
     .use(LanguageDetector)
@@ -18,13 +64,22 @@ i18n
         resources: {
             en: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Device Verification Subsystem",
+
+                    //Greetings
+                    "greetings": "Hi",
+
                     // Navigation
+                    "headerText": "Main Navigation",
                     "homeLink"  : "Home",
                     "dashboardLink": "Dashboard",
                     "VerifyImei": "Verify IMEI",
                     "Bulkverify": "Bulk IMEI",
                     "CheckStatus": "Check Status",
-
+                    "info":"Info",
+                    "status.pending":"Pending",
+                    "status.notFound":"Not Found",
                     //Header
                     "verifyImei.header": "Verify IMEI",
 
@@ -61,6 +116,19 @@ i18n
                     "pairs.title": "Paired subscribers",
                     "pairs.lastseen": "Last seen",
 
+                    //IMIE Status
+                    "heading.normalizedIMie" :"Normalized IMEI",
+                    "heading.status": "IMEI Status",
+                    "heading.deviceInformation": "Device Information",
+                    "heading.noInfo": "No Information",
+                    "heading.pairedSubs": "Paired Subscribers",
+                    "heading.lastseen": "Last Seen",
+                    "subHead.duplicateCompound": "duplicate_compound",
+                    "subHead.notOnRegistrationList": "not_on_registration_list",
+                    "subHead.gsmaNotFound": "gsma_not_found",
+                    "subHead.onLocalStolenList": "on_local_stolen_list",
+
+
                     //BulkVerify
                     "bulkverify.label":"Bulk verification method",
                     "bulkverify.tab":"Tab-delimited file",
@@ -76,6 +144,9 @@ i18n
                     "bulkverify.table.stolen":"IMEIs pending stolen report verification",
                     "bulkverify.table.pending":"IMEIs pending registration",
                     "bulkverify.table.info":"IMEIs per informational condition",
+                    "bulkverify.tabDelimitedFile":"Tab-Delimited-File",
+                    "bulkverify.enterTheTac": "Enter The Tac",
+                    "bulkverify.responseMessgae": "You're request is completed. Track using this id,",
 
                     //404 Page
                     "UnauthorizedPage": "Unauthorized Page",
@@ -91,26 +162,74 @@ i18n
                     "checkStatus.noResults": "No Results found",
                     //Common
                     "submit" : "Submit",
-                    "noInformation": "No information"
+                    "button.ok": "Ok",
+                    "noInformation": "No information",
+                    "unprocessibleEntity" : "Unprocessible Entity",
+                    "serverNotResponding" : "Server Not Responding",
+                    "error" : "error",
+                    "chooseFile": "Choose File",
+                    "logout": "Logout",
+
+                    //errors
+                    "errors.FeildReq": " This field is required",
+                    "errors.Imie": "IMEI must contain 14 to 16 characters and contains a combination of [0-9], [a-f] and [A-F]. ",
+                    "errors.tacLength": "The Tac must be a 8 digits number",
+                    "errors.tacType": "The tac must be a number",
+                    "errors.limitExceed": "Limit Exceed",
+                    "errors.limitExceeded": "Limit exceeded for number of requests",
+                    "errors.invalidFormat": "Invalid Format",
+                    "errors.enterValidTac": "Enter Valid Tac",
+
+
+                    //Copyright
+                    "copyright": "Copyright",
+                    "allRightsReserved": "All Rights Reserved",
+                    "Version": "Version",
+                    "language": "Language",
+                    "requestPresent":"You are request is already in process can not process a new request"
                 }
             },
             es: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Subsistema De Verificación De Dispositivos",
+
+                    //Greetings
+                    "greetings": "Hola",
+
                     "welcomeApp": "Bienvenido a LSMS",
 
                     // Navigation
+                    "headerText": "Navegación Principal",
                     "homeLink"  : "Casa",
                     "dashboardLink": "Tablero",
                     "VerifyImei": "Verificar IMEI",
                     "Bulkverify": "Abultar IMEI",
                     "CheckStatus": "Periksa Status",
+                    "info":"Info",
+                    "status.pending":"Pendiente",
+                    "status.notFound":"Extraviado",
 
                     //Header
                     "verifyImei.header": "Verificar IMEI",
 
+                    //IMIE Status
+                    "heading.normalizedIMie" :"IMEI normalizado",
+                    "heading.status": "Estado IMEI",
+                    "heading.deviceInformation": "Información del dispositivo",
+                    "heading.noInfo": "Sin información",
+                    "heading.pairedSubs": "Suscriptores Pareados",
+                    "heading.lastseen": "Ultima vez visto",
+                    "subHead.duplicateCompound": "compuesto_duplicado",
+                    "subHead.notOnRegistrationList": "no-en-la-lista-de-registro",
+                    "subHead.gsmaNotFound": "gsma-no-encontrado",
+                    "subHead.onLocalStolenList": "en-lista-local-robada",
+
                     //Verify IMEI Component
                     "checkStatus.header": "Verifique el estado de IMEI",
                     "checkStatus.label": "Ingrese el IMEI",
+                    "checkStatus.term": "Método de verificación",
+                    "checkStatus.createdAt": "Creado en",
                     "checkStatus.placeholder": "Ingrese 14 dígitos IMEI",
                     "deviceStatusTable.title": "Estado del dispositivo",
                     "deviceStatusTable.brand": "Marca",
@@ -136,6 +255,10 @@ i18n
                     "deviceStatusTable.date": "Bloquear a partir de la fecha",
                     "seenWith.title": "Visto con",
                     "submit" : "Enviar",
+                    "button.ok": "De acuerdo",
+                    "unprocessibleEntity" : "Entidad no procesable",
+                    "serverNotResponding" : "Servidor no responde",
+                    "error" : "error",
 
                     //BulkVerify
                     "bulkverify.label":"Método de verificación a granel",
@@ -152,6 +275,13 @@ i18n
                     "bulkverify.table.stolen":"IMEIs pendiente de verificación de informes robados",
                     "bulkverify.table.pending":"IMEI pendiente de registro",
                     "bulkverify.table.info":"IMEI por condición informativa",
+                    "bulkverify.tabDelimitedFile":"Archivo-delimitado-por-tabulaciones",
+                    "bulkverify.enterTheTac": "Entrar en el tac",
+                    "bulkverify.responseMessgae": "Su solicitud se ha completado. Seguimiento usando esta identificación,",
+
+                    //commons
+                    "chooseFile": "Elija el archivo",
+                    "logout": "Cerrar sesión",
 
                     //Check Status
                     "checkStatus.trackingId": "Seguimiento de Ids",
@@ -161,21 +291,60 @@ i18n
                     "checkStatus.status.pending": "PENDIENTE",
                     "checkStatus.status.notFound": "EXTRAVIADO",
                     "checkStatus.noResults": "No se han encontrado resultados",
+
+                    //errors
+                    "errors.FeildReq": "Esta seccion es necesaria",
+                    "errors.Imie": "IMEI debe contener de 14 a 16 caracteres y contiene una combinación de [0-9], [a-f] y [A-F].",
+                    "errors.tacLength": "El Tac debe ser un número de 8 dígitos",
+                    "errors.tacType": "El tac debe ser un número.",
+                    "errors.limitExceed": "Límite excedido",
+                    "errors.limitExceeded": "Límite excedido para el número de solicitudes",
+                    "errors.invalidFormat": "Formato inválido",
+                    "errors.enterValidTac": "Ingrese val",
+
+                    //Copyright
+                    "copyright": "Derechos",
+                    "language": "Idioma",
+                    "allRightsReserved": "Todos Los Derechos Reservados",
+                    "Version": "Versión",
+                    "requestPresent":"Eres petición ya está en proceso no puede procesar una nueva solicitu"
                 }
             },
             id: {
                 translations: {
+                    // App Name
+                    "deviceVerificationSystem": "Subsistem Verifikasi Perangkat",
+
+                    //Greetings
+                    "greetings": "Hai",
+
                     "welcomeApp": "Selamat datang di LSMS",
 
                     // Navigation
+                    "headerText": "Navigasi Utama",
                     "homeLink"  : "Rumah",
                     "dashboardLink": "Dasbor",
                     "VerifyImei": "Memeriksa IMEI",
                     "Bulkverify": "Jumlah besar IMEI",
                     "CheckStatus": "Periksa Status",
+                    "info":"Info",
+                    "status.pending":"Tertunda",
+                    "status.notFound":"Tidak Ditemukan",
 
                     //Header
                     "verifyImei.header": "Memeriksa IMEI",
+
+                    //IMIE Status
+                    "heading.normalizedIMie" :"IMEI Yang Dinormalisasi",
+                    "heading.status": "Status IMEI",
+                    "heading.deviceInformation": "Informasi Perangkat",
+                    "heading.noInfo": "Tidak ada Informasi",
+                    "heading.pairedSubs": "Pelanggan Berpasangan",
+                    "heading.lastseen": "Terakhir terlihat",
+                    "subHead.duplicateCompound": "duplikat_senyawa",
+                    "subHead.notOnRegistrationList": "tidak_ada_dalam_daftar_pendaftaran",
+                    "subHead.gsmaNotFound": "gsma_tidak_ditemukan",
+                    "subHead.onLocalStolenList": "pada_daftar_curian_lokal",
 
                     //Verify IMEI Component
                     "checkStatus.header": "Periksa Status IMEI",
@@ -205,7 +374,10 @@ i18n
                     "deviceStatusTable.date": "Blokir Tanggal",
                     "seenWith.title": "Terlihat dengan",
                     "submit" : "Menyerahkan",
-
+                    "button.ok": "Baik",
+                    "unprocessibleEntity" : "Entitas yang tidak dapat diproses",
+                    "serverNotResponding" : "Server tidak merespons",
+                    "error" : "kesalahan",
                     //BulkVerify
                     "bulkverify.label":"Metode verifikasi massal",
                     "bulkverify.tab":"File yang dibatasi tab",
@@ -221,6 +393,9 @@ i18n
                     "bulkverify.table.stolen":"IMEI menunggu verifikasi laporan yang dicuri",
                     "bulkverify.table.pending":"IMEI menunggu pendaftaran",
                     "bulkverify.table.info":"IMEI per kondisi informasi",
+                    "bulkverify.tabDelimitedFile":"File-yang-Dibatasi-Tab",
+                    "bulkverify.enterTheTac": "Masukkan Tac",
+                    "bulkverify.responseMessgae": "Permintaan Anda selesai. Lacak menggunakan id ini,",
 
                     //Check Status
                     "checkStatus.trackingId": "Id Pelacakan",
@@ -230,6 +405,32 @@ i18n
                     "checkStatus.status.pending": "TERTUNDA",
                     "checkStatus.status.notFound": "TIDAK DITEMUKAN",
                     "checkStatus.noResults": "Tidak ada hasil yang ditemukan",
+                    "checkStatus.createdAt": "Dibuat di",
+                    "checkStatus.term": "Metode Verifikasi",
+
+                    //commons
+                    "chooseFile": "Pilih File",
+                    "logout": "Keluar",
+
+                    //errors
+                    "errors.FeildReq": "Bagian ini diperlukan",
+                    "errors.Imie": "IMEI harus mengandung 14 hingga 16 karakter dan mengandung kombinasi [0-9], [a-f] dan [A-F].",
+                    "errors.tacLength": "Tac harus berupa angka 8 digit",
+                    "errors.tacType": "Tac harus berupa angka",
+                    "errors.limitExceed": "Batasi Melebihi",
+                    "errors.limitExceeded": "Batas terlampaui untuk jumlah permintaan",
+                    "errors.invalidFormat": "Format yang tidak valid",
+                    "errors.enterValidTac": "Masukkan tac yang valid",
+
+
+                    //Copyright
+                    "copyright": "Hak Cipta",
+                    "allRightsReserved": "Seluruh Hak Cipta",
+                    "Version": "Versi",
+                    "language": "Bahasa",
+                    "requestPresent":"Permintaan Anda sudah dalam proses tidak dapat memproses permintaan baru"
+
+
                 }
             }
         },
@@ -252,5 +453,5 @@ i18n
             wait: true
         }
     });
-
+i18n.changeLanguage(defaultLanguage);
 export default i18n;

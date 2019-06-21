@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <LoadNamespace(CheckStatus) />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -36,6 +37,7 @@ ShallowWrapper {
         "_currentRenderer2": null,
         "_currentValue": undefined,
         "_currentValue2": undefined,
+        "_threadCount": 0,
       },
     },
   },
@@ -64,6 +66,7 @@ ShallowWrapper {
           "_currentRenderer2": null,
           "_currentValue": undefined,
           "_currentValue2": undefined,
+          "_threadCount": 0,
         },
       },
     },
@@ -72,11 +75,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
@@ -84,7 +94,10 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -108,7 +121,7 @@ initialize {
           },
           "children": Array [
             Object {
-              "data": "checkStatus.noResults",
+              "data": "No Results found",
               "next": null,
               "parent": [Circular],
               "prev": null,
@@ -144,7 +157,7 @@ initialize {
         },
         "children": Array [
           Object {
-            "data": "checkStatus.noResults",
+            "data": "No Results found",
             "next": null,
             "parent": [Circular],
             "prev": null,
@@ -226,6 +239,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <StatusCollapse />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
     "getNode": [Function],
     "render": [Function],
     "simulateError": [Function],
@@ -262,11 +276,18 @@ ShallowWrapper {
     "adapter": ReactSixteenAdapter {
       "options": Object {
         "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
         "lifecycles": Object {
           "componentDidUpdate": Object {
             "onSetState": true,
           },
-          "getDerivedStateFromProps": true,
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
           "getSnapshotBeforeUpdate": true,
           "setState": Object {
             "skipsComponentDidUpdateOnNullish": true,
@@ -274,7 +295,10 @@ ShallowWrapper {
         },
       },
     },
+    Symbol(enzyme.__providerValues__): undefined,
   },
+  Symbol(enzyme.__providerValues__): Map {},
+  Symbol(enzyme.__childContext__): null,
 }
 `;
 
@@ -291,7 +315,7 @@ initialize {
           Object {
             "attribs": Object {
               "class": "col-12 col-md-4",
-              "data-label": "checkStatus.trackingId",
+              "data-label": "Tracking Ids",
             },
             "children": Array [],
             "name": "div",
@@ -299,23 +323,15 @@ initialize {
             "next": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.currentStatus",
+                "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.createdAt",
+                  "data-label": "Created at",
                 },
                 "children": Array [],
                 "name": "div",
@@ -323,7 +339,7 @@ initialize {
                 "next": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.term",
+                    "data-label": "Verification Method",
                   },
                   "children": Array [],
                   "name": "div",
@@ -331,7 +347,7 @@ initialize {
                   "next": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-2",
-                      "data-label": "checkStatus.checkStatus",
+                      "data-label": "Check Status",
                     },
                     "children": Array [
                       Object {
@@ -341,7 +357,7 @@ initialize {
                         },
                         "children": Array [
                           Object {
-                            "data": "CheckStatus",
+                            "data": "Check Status",
                             "next": null,
                             "parent": [Circular],
                             "prev": null,
@@ -430,23 +446,15 @@ initialize {
           Object {
             "attribs": Object {
               "class": "col-12 col-md-2",
-              "data-label": "checkStatus.currentStatus",
+              "data-label": "Current Status",
             },
-            "children": Array [
-              Object {
-                "data": "PENDING",
-                "next": null,
-                "parent": [Circular],
-                "prev": null,
-                "type": "text",
-              },
-            ],
+            "children": Array [],
             "name": "div",
             "namespace": "http://www.w3.org/1999/xhtml",
             "next": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.createdAt",
+                "data-label": "Created at",
               },
               "children": Array [],
               "name": "div",
@@ -454,7 +462,7 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.term",
+                  "data-label": "Verification Method",
                 },
                 "children": Array [],
                 "name": "div",
@@ -462,7 +470,7 @@ initialize {
                 "next": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.checkStatus",
+                    "data-label": "Check Status",
                   },
                   "children": Array [
                     Object {
@@ -472,7 +480,7 @@ initialize {
                       },
                       "children": Array [
                         Object {
-                          "data": "CheckStatus",
+                          "data": "Check Status",
                           "next": null,
                           "parent": [Circular],
                           "prev": null,
@@ -538,7 +546,7 @@ initialize {
             "prev": Object {
               "attribs": Object {
                 "class": "col-12 col-md-4",
-                "data-label": "checkStatus.trackingId",
+                "data-label": "Tracking Ids",
               },
               "children": Array [],
               "name": "div",
@@ -569,7 +577,7 @@ initialize {
           Object {
             "attribs": Object {
               "class": "col-12 col-md-2",
-              "data-label": "checkStatus.createdAt",
+              "data-label": "Created at",
             },
             "children": Array [],
             "name": "div",
@@ -577,7 +585,7 @@ initialize {
             "next": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.term",
+                "data-label": "Verification Method",
               },
               "children": Array [],
               "name": "div",
@@ -585,7 +593,7 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.checkStatus",
+                  "data-label": "Check Status",
                 },
                 "children": Array [
                   Object {
@@ -595,7 +603,7 @@ initialize {
                     },
                     "children": Array [
                       Object {
-                        "data": "CheckStatus",
+                        "data": "Check Status",
                         "next": null,
                         "parent": [Circular],
                         "prev": null,
@@ -649,17 +657,9 @@ initialize {
             "prev": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.currentStatus",
+                "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": [Circular],
@@ -667,7 +667,7 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-4",
-                  "data-label": "checkStatus.trackingId",
+                  "data-label": "Tracking Ids",
                 },
                 "children": Array [],
                 "name": "div",
@@ -708,7 +708,7 @@ initialize {
           Object {
             "attribs": Object {
               "class": "col-12 col-md-2",
-              "data-label": "checkStatus.term",
+              "data-label": "Verification Method",
             },
             "children": Array [],
             "name": "div",
@@ -716,7 +716,7 @@ initialize {
             "next": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.checkStatus",
+                "data-label": "Check Status",
               },
               "children": Array [
                 Object {
@@ -726,7 +726,7 @@ initialize {
                   },
                   "children": Array [
                     Object {
-                      "data": "CheckStatus",
+                      "data": "Check Status",
                       "next": null,
                       "parent": [Circular],
                       "prev": null,
@@ -768,7 +768,7 @@ initialize {
             "prev": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.createdAt",
+                "data-label": "Created at",
               },
               "children": Array [],
               "name": "div",
@@ -778,17 +778,9 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.currentStatus",
+                  "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": [Circular],
@@ -796,7 +788,7 @@ initialize {
                 "prev": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-4",
-                    "data-label": "checkStatus.trackingId",
+                    "data-label": "Tracking Ids",
                   },
                   "children": Array [],
                   "name": "div",
@@ -847,7 +839,7 @@ initialize {
           Object {
             "attribs": Object {
               "class": "col-12 col-md-2",
-              "data-label": "checkStatus.checkStatus",
+              "data-label": "Check Status",
             },
             "children": Array [
               Object {
@@ -857,7 +849,7 @@ initialize {
                 },
                 "children": Array [
                   Object {
-                    "data": "CheckStatus",
+                    "data": "Check Status",
                     "next": null,
                     "parent": [Circular],
                     "prev": null,
@@ -887,7 +879,7 @@ initialize {
             "prev": Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.term",
+                "data-label": "Verification Method",
               },
               "children": Array [],
               "name": "div",
@@ -897,7 +889,7 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.createdAt",
+                  "data-label": "Created at",
                 },
                 "children": Array [],
                 "name": "div",
@@ -907,17 +899,9 @@ initialize {
                 "prev": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.currentStatus",
+                    "data-label": "Current Status",
                   },
-                  "children": Array [
-                    Object {
-                      "data": "PENDING",
-                      "next": null,
-                      "parent": [Circular],
-                      "prev": null,
-                      "type": "text",
-                    },
-                  ],
+                  "children": Array [],
                   "name": "div",
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": [Circular],
@@ -925,7 +909,7 @@ initialize {
                   "prev": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-4",
-                      "data-label": "checkStatus.trackingId",
+                      "data-label": "Tracking Ids",
                     },
                     "children": Array [],
                     "name": "div",
@@ -1057,7 +1041,7 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "col-12 col-md-4",
-                "data-label": "checkStatus.trackingId",
+                "data-label": "Tracking Ids",
               },
               "children": Array [],
               "name": "div",
@@ -1065,23 +1049,15 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.currentStatus",
+                  "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.createdAt",
+                    "data-label": "Created at",
                   },
                   "children": Array [],
                   "name": "div",
@@ -1089,7 +1065,7 @@ initialize {
                   "next": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-2",
-                      "data-label": "checkStatus.term",
+                      "data-label": "Verification Method",
                     },
                     "children": Array [],
                     "name": "div",
@@ -1097,7 +1073,7 @@ initialize {
                     "next": Object {
                       "attribs": Object {
                         "class": "col-12 col-md-2",
-                        "data-label": "checkStatus.checkStatus",
+                        "data-label": "Check Status",
                       },
                       "children": Array [
                         Object {
@@ -1107,7 +1083,7 @@ initialize {
                           },
                           "children": Array [
                             Object {
-                              "data": "CheckStatus",
+                              "data": "Check Status",
                               "next": null,
                               "parent": [Circular],
                               "prev": null,
@@ -1196,23 +1172,15 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.currentStatus",
+                "data-label": "Current Status",
               },
-              "children": Array [
-                Object {
-                  "data": "PENDING",
-                  "next": null,
-                  "parent": [Circular],
-                  "prev": null,
-                  "type": "text",
-                },
-              ],
+              "children": Array [],
               "name": "div",
               "namespace": "http://www.w3.org/1999/xhtml",
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.createdAt",
+                  "data-label": "Created at",
                 },
                 "children": Array [],
                 "name": "div",
@@ -1220,7 +1188,7 @@ initialize {
                 "next": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.term",
+                    "data-label": "Verification Method",
                   },
                   "children": Array [],
                   "name": "div",
@@ -1228,7 +1196,7 @@ initialize {
                   "next": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-2",
-                      "data-label": "checkStatus.checkStatus",
+                      "data-label": "Check Status",
                     },
                     "children": Array [
                       Object {
@@ -1238,7 +1206,7 @@ initialize {
                         },
                         "children": Array [
                           Object {
-                            "data": "CheckStatus",
+                            "data": "Check Status",
                             "next": null,
                             "parent": [Circular],
                             "prev": null,
@@ -1304,7 +1272,7 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-4",
-                  "data-label": "checkStatus.trackingId",
+                  "data-label": "Tracking Ids",
                 },
                 "children": Array [],
                 "name": "div",
@@ -1335,7 +1303,7 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.createdAt",
+                "data-label": "Created at",
               },
               "children": Array [],
               "name": "div",
@@ -1343,7 +1311,7 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.term",
+                  "data-label": "Verification Method",
                 },
                 "children": Array [],
                 "name": "div",
@@ -1351,7 +1319,7 @@ initialize {
                 "next": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.checkStatus",
+                    "data-label": "Check Status",
                   },
                   "children": Array [
                     Object {
@@ -1361,7 +1329,7 @@ initialize {
                       },
                       "children": Array [
                         Object {
-                          "data": "CheckStatus",
+                          "data": "Check Status",
                           "next": null,
                           "parent": [Circular],
                           "prev": null,
@@ -1415,17 +1383,9 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.currentStatus",
+                  "data-label": "Current Status",
                 },
-                "children": Array [
-                  Object {
-                    "data": "PENDING",
-                    "next": null,
-                    "parent": [Circular],
-                    "prev": null,
-                    "type": "text",
-                  },
-                ],
+                "children": Array [],
                 "name": "div",
                 "namespace": "http://www.w3.org/1999/xhtml",
                 "next": [Circular],
@@ -1433,7 +1393,7 @@ initialize {
                 "prev": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-4",
-                    "data-label": "checkStatus.trackingId",
+                    "data-label": "Tracking Ids",
                   },
                   "children": Array [],
                   "name": "div",
@@ -1474,7 +1434,7 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.term",
+                "data-label": "Verification Method",
               },
               "children": Array [],
               "name": "div",
@@ -1482,7 +1442,7 @@ initialize {
               "next": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.checkStatus",
+                  "data-label": "Check Status",
                 },
                 "children": Array [
                   Object {
@@ -1492,7 +1452,7 @@ initialize {
                     },
                     "children": Array [
                       Object {
-                        "data": "CheckStatus",
+                        "data": "Check Status",
                         "next": null,
                         "parent": [Circular],
                         "prev": null,
@@ -1534,7 +1494,7 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.createdAt",
+                  "data-label": "Created at",
                 },
                 "children": Array [],
                 "name": "div",
@@ -1544,17 +1504,9 @@ initialize {
                 "prev": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.currentStatus",
+                    "data-label": "Current Status",
                   },
-                  "children": Array [
-                    Object {
-                      "data": "PENDING",
-                      "next": null,
-                      "parent": [Circular],
-                      "prev": null,
-                      "type": "text",
-                    },
-                  ],
+                  "children": Array [],
                   "name": "div",
                   "namespace": "http://www.w3.org/1999/xhtml",
                   "next": [Circular],
@@ -1562,7 +1514,7 @@ initialize {
                   "prev": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-4",
-                      "data-label": "checkStatus.trackingId",
+                      "data-label": "Tracking Ids",
                     },
                     "children": Array [],
                     "name": "div",
@@ -1613,7 +1565,7 @@ initialize {
             Object {
               "attribs": Object {
                 "class": "col-12 col-md-2",
-                "data-label": "checkStatus.checkStatus",
+                "data-label": "Check Status",
               },
               "children": Array [
                 Object {
@@ -1623,7 +1575,7 @@ initialize {
                   },
                   "children": Array [
                     Object {
-                      "data": "CheckStatus",
+                      "data": "Check Status",
                       "next": null,
                       "parent": [Circular],
                       "prev": null,
@@ -1653,7 +1605,7 @@ initialize {
               "prev": Object {
                 "attribs": Object {
                   "class": "col-12 col-md-2",
-                  "data-label": "checkStatus.term",
+                  "data-label": "Verification Method",
                 },
                 "children": Array [],
                 "name": "div",
@@ -1663,7 +1615,7 @@ initialize {
                 "prev": Object {
                   "attribs": Object {
                     "class": "col-12 col-md-2",
-                    "data-label": "checkStatus.createdAt",
+                    "data-label": "Created at",
                   },
                   "children": Array [],
                   "name": "div",
@@ -1673,17 +1625,9 @@ initialize {
                   "prev": Object {
                     "attribs": Object {
                       "class": "col-12 col-md-2",
-                      "data-label": "checkStatus.currentStatus",
+                      "data-label": "Current Status",
                     },
-                    "children": Array [
-                      Object {
-                        "data": "PENDING",
-                        "next": null,
-                        "parent": [Circular],
-                        "prev": null,
-                        "type": "text",
-                      },
-                    ],
+                    "children": Array [],
                     "name": "div",
                     "namespace": "http://www.w3.org/1999/xhtml",
                     "next": [Circular],
@@ -1691,7 +1635,7 @@ initialize {
                     "prev": Object {
                       "attribs": Object {
                         "class": "col-12 col-md-4",
-                        "data-label": "checkStatus.trackingId",
+                        "data-label": "Tracking Ids",
                       },
                       "children": Array [],
                       "name": "div",
