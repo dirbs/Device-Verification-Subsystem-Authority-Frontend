@@ -160,7 +160,7 @@ export class StatusCollapse extends Component {
             });
             SweetAlert({
               title: i18n.t('error'),
-              message: i18n.t('checkStatus.status.notFound'),
+              message: response.data.state,
               type: 'error'
             })
           }
@@ -297,16 +297,16 @@ getUniqueValues =(value)=>{
           }
 
   render() {
-    const {requests, noIds} = this.state
+    const {requests, noIds, apiFetched} = this.state
     return (
       <I18n ns="translations">
         {
           (t) => (
             <div className="tablerowbox">
               <ToastContainer/>
-              {noIds ? <div className='nodata'>{t('checkStatus.noResults')}</div> : requests.length < 0 ?  
-                <BoxLoader/>
-                :
+              {
+                 noIds ? <BoxLoader/> 
+                : 
                 <Row className="tablehead">
                   <Col md="4">{t('checkStatus.trackingId')}</Col>
                   <Col md="2">{t('checkStatus.currentStatus')}</Col>
